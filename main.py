@@ -78,7 +78,7 @@ class test(Resource):
 api.add_resource(upload,"/upload")
 
 
-
+v=""
 
 if __name__=='__main__':
     app.run(port=7000,debug=True)

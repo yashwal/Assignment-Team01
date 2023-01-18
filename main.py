@@ -68,7 +68,11 @@ class upload(Resource):
         return{"data":"Inserted successfully","status":200}
 
 
+class test(Resource):
+    def post(self):
 
+        
+        return{"data":"Created category table","status":200}
 
 
 api.add_resource(upload,"/upload")

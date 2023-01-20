@@ -88,7 +88,7 @@ def updateDB(newTitle,newDesc,newUrl,newPrice,productId):
 
 
 
-#future work
+#future work for database
 def updateTitle(newTitle,productId):
     cur.execute("update product set title = %s where product_id=%s",(str(newTitle),productId,))
     conn.commit()

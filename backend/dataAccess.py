@@ -3,8 +3,9 @@ import psycopg2
 conn = psycopg2.connect(host="localhost", database="unbxd", user="postgres", password="unbxd")
 cur=conn.cursor()
 
+
 def uploadProduct(data):
-    #cur.execute("create table product(product_id text PRIMARY key,title text,decription text,image_url text,price text)")
+    #cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text)")
     for i in data:
         product_id=str(i['uniqueId'])
         title=(i['title'])
@@ -18,8 +19,12 @@ def uploadProduct(data):
         
         cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s)",(product_id,title,description,image_url,price, ))
         conn.commit()
+
     print("Sucessfully added data to product database")
     return{"Status":200}
+
+
+
 
 def uploadCategory(data):
     #cur.execute("create table category01(cat_id text PRIMARY key,label text)")
@@ -43,13 +48,15 @@ def uploadCategory(data):
         try:
             catLevel2=str(i['catlevel2Name'])
         except:
-            catLevel2 = 'Null'
+            catLevel2 = "Others"
         parent_id = mapp[catLevel1]
         cur.execute("INSERT INTO category02 values(%s,%s,%s)",(product_id,catLevel2,str(parent_id),))
         conn.commit()
 
     print("Sucessfully added data to category database")
     return{"Status":200}
+
+
 
 def getProducts(productId):
     cur.execute("select * from product where product_id=%s",(str(productId),))
@@ -62,6 +69,8 @@ def getProducts(productId):
         "price":data[4]
     }
 
+
+
 def checkProductID(productId):
     cur.execute("select * from product where product_id=%s",(productId,))
     data= cur.fetchone()
@@ -71,13 +80,15 @@ def checkProductID(productId):
 
 
 def updateDB(newTitle,newDesc,newUrl,newPrice,productId):
-    cur.execute("update product set title = %s,decription = %s,image_url = %s,price = %s where product_id=%s",(str(newTitle),str(newDesc),str(newUrl),str(newPrice),productId,))
+    cur.execute("update product set title = %s,description = %s,image_url = %s,price = %s where product_id=%s",(str(newTitle),str(newDesc),str(newUrl),newPrice,productId,))
     conn.commit()
     print({"Message":"DB updated"})
-    return 1
+    return {"status":200}
 
 
 
+
+#future work for database
 def updateTitle(newTitle,productId):
     cur.execute("update product set title = %s where product_id=%s",(str(newTitle),productId,))
     conn.commit()

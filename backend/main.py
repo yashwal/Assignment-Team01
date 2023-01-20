@@ -5,13 +5,17 @@ from dataAccess import *
 app=Flask(__name__)
 api=Api(app)
 
+
+#for the given product_id, return the product details
 class fetchProducts(Resource):
     def get(self,productId):
         data=getProducts(productId)
         return data
-        
 api.add_resource(fetchProducts,"/fetchProducts/<string:productId>")
 
+
+
+#update the product details if the product already exists in the database and the product_id is valid
 class updateProduct(Resource):
     def put(self):
         data=request.json
@@ -24,37 +28,26 @@ class updateProduct(Resource):
                 print({"Message":"Product ID is missing in DB"})
                 break
             updateDB(i.get("title"),i.get("productDescription"),i.get("productImage"),i.get("price"),productId)
-
+            
         return({"Message":"DB Updated","status":200})
-                
+
 api.add_resource(updateProduct,"/updateProduct")               
 
 
+#upload the given data in the json file to postgreSQL table
 class upload(Resource):
     def post(self):
         data=request.json
         uploadProduct(data)
         uploadCategory(data)
+
         return {"Data Ingestion":"Successfull!!!"}
 
 api.add_resource(upload,"/upload")
+
 
 
 if __name__=='__main__':
     app.run(port=7000,debug=True)
 
 
-'''
-else:
-                if(i.get("title")!=None):
-                    updateTitle(i.get("title"),productId)
-                
-                if(i.get("productDescription")!=None):
-                    updateDesc(i.get("productDescription"),productId)
-
-                if(i.get("productImage")!=None):
-                    updateUrl(i.get("productImage"),productId)
-
-                if(i.get("price")!=None):
-                    updatePrice(i.get("price"),productId)
-'''

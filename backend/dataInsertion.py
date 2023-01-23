@@ -1,6 +1,8 @@
 from dbConnection import *
 
-
+#creates a table named product which has all the product details
+#A JSON file is given as input
+#the function connects to the database and adds data to the product table
 def uploadProduct(data):
     res=connectDB()
     conn=res[0]
@@ -27,6 +29,9 @@ def uploadProduct(data):
 
 
 
+#creates a table category which has product_id, category name and parent_id
+#the database connection is initiated 
+#data is added into the category table
 def uploadCategory(data):
     res=connectDB()
     conn=res[0]

@@ -1,0 +1,26 @@
+.column1 {
+    float: left;
+    width: 30%;
+    margin-left: 7%;
+    margin-top: 5%;
+  }
+  
+  .column2 {
+    float: left;
+    width:30%;
+    margin-top: 5%;
+  }
+
+  .image_text{
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px;
+  }
+
+  .image:hover{
+    transition:1s;
+    transform: scale(1.2);
+    background-color: #e9e9e9;
+    border-radius: 5%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }

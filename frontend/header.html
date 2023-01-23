@@ -10,7 +10,7 @@
 <body>
 <div>
     <div class="header">
-        <a class="active" href="#index"><i><b>Team 1</b></i></a>
+        <a class="active"><i><b>Team 1</b></i></a>
         <form id="form" method="GET"> 
             <input type="text" id="query" name="q" class="searchbar" placeholder="Search...">
             <button type="submit" class="searchbutton fa fa-search" onclick="getQuery()"></button>
@@ -18,19 +18,40 @@
       </div>
 
     <div class="header">   
-        <select class="dropdown" name="catLevel1" id="catLevel1">
-            <option value="none">---Select---</option>
-            <option value="men">Men</option>
-            <option value="women">Women</option>
-            <option value="exp">Exp</option>
+        <select class="dropdown" name="men" id="cat1" onchange="getCategory1()">
+            <option value="0">Men</option>
+            <option value="labelsWeLove">Labels We Love</option>
+            <option value="suiting">Suiting</option>
+            <option value="clearanceMen">Clearance Men</option>
+            <option value="underwear&Lounge">Underwear & Lounge</option>
+            <option value="newArrivals">New Arrivals</option>
+            <option value="expressXNBA">Express X NBA</option>
+            <option value="pants">Pants</option>
+            <option value="accessories">Accessories</option>
+            <option value="tops">Tops</option>
+            <option value="accessories&shoes">Accessories & Shoes</option>
+            <option value="outerwear">Outerwear</option>
+            <option value="others">Others</option>
         </select>
-        <select class="dropdown" name="catLevel2" id="catLevel2">
-            <option value="none">---Select---</option>
-            <option value="cat1">cat1</option>
-            <option value="cat2">cat2</option>
-            <option value="cat3">cat3</option>
-            <option value="cat4">cat4</option>
+        <select class="dropdown" name="women" id="cat2" onchange="getCategory2()">
+            <option value="1">Women</option>
+            <option value="labelsWeLove">Labels We Love</option>
+            <option value="dresses">Dresses</option>
+            <option value="work">Work</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="newArrivals">New Arrivals</option>
+            <option value="sweaters&cardigam">Sweaters and Cardigam</option>
+            <option value="petiteClothing">Petite Clothing</option>
+            <option value="accessories">Accessories</option>
+            <option value="jackets&coats">Jacktes & Coats</option>
+            <option value="bottoms">Bottoms</option>
+            <option value="tops">Tops</option>
+            <option value="clearanceWomen">Clearance Women</option>
+            <option value="accessories&shoes">Accessories & Shoes</option>
+            <option value="jeans">Jeans</option>
+            <option value="others">Others</option>
         </select>
+        <button type="submit" class="dropdown">Exp</button>
     </div>
 </div>    
 </body>

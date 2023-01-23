@@ -1,6 +1,10 @@
 from flask import *
 from flask_restful import Api,Resource
 from dataAccess import *
+from dataRetrieval import *
+from searchapi import *
+import json
+
 
 app=Flask(__name__)
 api=Api(app)
@@ -46,6 +50,30 @@ class upload(Resource):
 api.add_resource(upload,"/upload")
 
 
+#fetches ten products from unbxd search api and return it
+class productQuery(Resource):
+    def get(self):
+        searchQuery = request.args.get('q', default="", type=str)
+        #searchQuery="red shirt"
+
+        response=searchProducts(searchQuery)
+        data = json.loads(response.content)
+        products = data['response']['products']
+        return products
+
+api.add_resource(productQuery,"/product-query")
+
+
+#fetch products from certain category
+class category(Resource):
+    def get(self,catLevel1,catLevel2): #page number should also be an argument
+        data=getCategory(catLevel1,catLevel2)
+        new_data = []
+        for product in data:
+            new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})
+            
+        return new_data
+api.add_resource(category,"/category/<string:catLevel1>/<string:catLevel2>")
 
 if __name__=='__main__':
     app.run(port=7000,debug=True)

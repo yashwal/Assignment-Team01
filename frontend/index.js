@@ -4,7 +4,7 @@ window.onload=function(){
     const prod_query =urlParams.get('q');
 
     if (prod_query!=null){
-        fetch(`http://127.0.0.1:6969/product-query?q=${prod_query}`,{
+        fetch(`http://127.0.0.1:7000/product-query?q=${prod_query}`,{
       method : 'GET',
       mode :'cors',
       headers:{

@@ -4,7 +4,7 @@ import json
 from flask_cors import CORS
 from flask_restful import Api,Resource
 from searchapi import *
-
+from dataRetrieval import *
 #from searchapi import *
 
 app = Flask(__name__)
@@ -20,5 +20,17 @@ def productQuery():
     return data['response']['products']
 
     
+@app.route('/category')
+
+def categoryQuery():
+    catLevel1 = request.args.get('cat1', default="", type=str)
+    catLevel2 = request.args.get('cat2', default="", type=str)
+    data=getCategory(catLevel1,catLevel2)
+    new_data = []
+    for product in data:
+        new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})
+    print(new_data,len(catLevel2))
+    return new_data
+
 if __name__ == "__main__":
     app.run(port=6969,debug=True)

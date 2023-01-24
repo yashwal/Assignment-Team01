@@ -17,7 +17,7 @@ def getProducts(productId):
         "price":data[4]
     }
 
-def getCategory(catLevel1,catLevel2):
+def searchProducts(catLevel1,catLevel2):
     res=connectDB()
     conn=res[0]
     cur=res[1]

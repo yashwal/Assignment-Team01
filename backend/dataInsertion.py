@@ -10,16 +10,16 @@ def uploadProduct(data):
     #cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text)")
     for i in data:
         product_id=str(i['uniqueId'])
-        title=(i['title'])
+        title=str(i['title'])
         try:
-            description=(i['productDescription'])
+            description=str(i['productDescription'])
         except:
             description=""
             print("0")
         image_url=str(i['productImage'])
-        price=str(i['price'])
+        price=(i['price'])
         
-        cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s)",(product_id,title,description,image_url,price, ))
+        cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price, ))
         conn.commit()
 
     cur.close()
@@ -56,7 +56,8 @@ def uploadCategory(data):
         product_id=str(i['uniqueId'])
         catLevel1=str(i['catlevel1Name'])
         try:
-            catLevel2=str(i['catlevel2Name'])
+            catLevel2=str(i['catlevel2Name']).replace(" ",'')
+            catLevel2=catLevel2.replace("&",'')
         except:
             catLevel2 = "Others"
         parent_id = mapp[catLevel1]

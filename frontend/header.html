@@ -18,7 +18,7 @@
       </div>
 
     <div class="header">   
-        <select class="dropdown" name="men" id="cat1" onchange="getCategory1()">
+        <select class="dropdown" value="men" id="cat1" onchange="getCategory('0')">
             <option value="0">Men</option>
             <option value="labelsWeLove">Labels We Love</option>
             <option value="suiting">Suiting</option>
@@ -33,7 +33,7 @@
             <option value="outerwear">Outerwear</option>
             <option value="others">Others</option>
         </select>
-        <select class="dropdown" name="women" id="cat2" onchange="getCategory2()">
+        <select class="dropdown" value="women" id="cat2" onchange="getCategory('1')">
             <option value="1">Women</option>
             <option value="labelsWeLove">Labels We Love</option>
             <option value="dresses">Dresses</option>
@@ -51,7 +51,7 @@
             <option value="jeans">Jeans</option>
             <option value="others">Others</option>
         </select>
-        <button type="submit" class="dropdown">Exp</button>
+        <button id="exp" onclick="getCategory('2')" value="exp" class="dropdown">Exp</button>
     </div>
 </div>    
 </body>

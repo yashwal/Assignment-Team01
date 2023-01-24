@@ -2,8 +2,6 @@ from flask import *
 from flask_restful import Api,Resource
 from dataAccess import *
 from dataRetrieval import *
-from dataInsertion import *
-from dataUpdation import *
 from searchapi import *
 import json
 
@@ -12,14 +10,12 @@ app=Flask(__name__)
 api=Api(app)
 
 
-#product_id is given as input , returns the product details
+#for the given product_id, return the product details
 class fetchProducts(Resource):
     def get(self,productId):
         data=getProducts(productId)
         return data
 api.add_resource(fetchProducts,"/fetchProducts/<string:productId>")
-
-
 
 #update the product details if the product already exists in the database and the product_id is valid
 class updateProduct(Resource):
@@ -73,7 +69,7 @@ class category(Resource):
         new_data = []
         for product in data:
             new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})
-
+            
         return new_data
 api.add_resource(category,"/category/<string:catLevel1>/<string:catLevel2>")
 

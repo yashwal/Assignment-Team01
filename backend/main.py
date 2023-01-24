@@ -50,16 +50,15 @@ api.add_resource(upload,"/upload")
 
 #fetches ten products from unbxd search api and return it
 class productQuery(Resource):
-    def get(self):
-        searchQuery = request.args.get('q', default="", type=str)
+    def get(self,searchQuery):
+        #searchQuery = request.args.get('q', default="", type=str)
         #searchQuery="red shirt"
-
         response=searchProducts(searchQuery)
         data = json.loads(response.content)
         products = data['response']['products']
         return products
 
-api.add_resource(productQuery,"/product-query")
+api.add_resource(productQuery,"/product_query/<string:searchQuery>")
 
 
 #fetch products from certain category
@@ -71,7 +70,7 @@ class category(Resource):
             new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})
             
         return new_data
-api.add_resource(category,"/category/<string:catLevel1>/<string:catLevel2>")
+api.add_resource(category,"/category/<string:catLevel1>&<string:catLevel2>")
 
 if __name__=='__main__':
     app.run(port=7000,debug=True)

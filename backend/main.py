@@ -19,7 +19,7 @@ class fetchProducts(Resource):
     def get(self,productId):
         data=getProducts(productId)
         return data
-api.add_resource(fetchProducts,"/fetchProducts/<string:productId>")
+api.add_resource(fetchProducts,"/product/<string:productId>")
 
 
 

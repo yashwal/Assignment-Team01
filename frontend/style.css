@@ -73,6 +73,7 @@ div > div{
 .column:hover{
   transform:scale(1.2);
   border-radius: 5%;
+  margin-top: 25px;
 }
 
 .image:hover{

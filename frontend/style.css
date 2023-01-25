@@ -60,14 +60,25 @@ div > div{
 }
 
 .image{
-  margin: 10% 25% 0% 25%;
+  margin: 10% auto 0% auto;
+  display: block;
   height: 250px;
   width: 200px;
 }
 
 .image_text{
+  text-transform: capitalize;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left;
+  padding: 0% 25% 0% 28%;
+}
+
+.price{
   text-align: center;
-  padding: 0% 25% 0% 25%;
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 0% 25% 0% 28%;
 }
 
 .column:hover{

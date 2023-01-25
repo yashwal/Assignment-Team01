@@ -10,7 +10,7 @@ window.onload=function(){
 
 
   if (prod_query!=null){
-      fetch(`http://127.0.0.1:6969/product-query?q=${prod_query}`,{
+      fetch(`http://127.0.0.1:7000/product_query?q=${prod_query}`,{
     method : 'GET',
     mode :'cors',
     headers:{
@@ -33,7 +33,7 @@ window.onload=function(){
   });
   }
     else if (catLevel1!=null ){
-        fetch(`http://127.0.0.1:6969/category?cat1=${catLevel1}&cat2=${catLevel2}`,{
+        fetch(`http://127.0.0.1:7000/category?cat1=${catLevel1}&cat2=${catLevel2}`,{
       method : 'GET',
       mode :'cors',
       headers:{
@@ -46,9 +46,9 @@ window.onload=function(){
     }).then(response => response.json()).then(data =>{
         console.log(data)
         var prod_container=document.getElementById("outer-div");
-        for( let i = 0; i < 9; i++){
+        for( let i = 0; i < data.length; i++){
             prod_container.innerHTML+=`<div class="column">
-            <img class="image" src="${data[i]["Img_URL"]}">
+            <img class="image" src="${data[i]['Img_URL']}">
             <p class="image_text">${data[i]['Title']}</p>
             <p class="image_text">$${data[i]['price']}</p>
             </a>
@@ -57,7 +57,7 @@ window.onload=function(){
     });
   }
     else {
-      fetch(`http://127.0.0.1:6969/product-query?q=*`,{
+      fetch(`http://127.0.0.1:7000/product_query?q=*`,{
     method : 'GET',
     mode :'cors',
     headers:{

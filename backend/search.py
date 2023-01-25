@@ -25,7 +25,7 @@ def productQuery():
 def categoryQuery():
     catLevel1 = request.args.get('cat1', default="", type=str)
     catLevel2 = request.args.get('cat2', default="", type=str)
-    data=getCategory(catLevel1,catLevel2)
+    data=searchProducts(catLevel1,catLevel2)
     new_data = []
     for product in data:
         new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})

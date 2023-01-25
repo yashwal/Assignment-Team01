@@ -1,7 +1,7 @@
 from flask import *
 from flask_restful import Api,Resource
 
-
+from flask_cors import CORS
 from dataRetrieval import *
 from dataInsertion import *
 from dataUpdation import *
@@ -10,6 +10,7 @@ import json
 
 
 app=Flask(__name__)
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 api=Api(app)
 
 
@@ -55,27 +56,29 @@ api.add_resource(upload,"/upload")
 
 #fetches ten products from unbxd search api and return it
 class productQuery(Resource):
-    def get(self,searchQuery):
-        #searchQuery = request.args.get('q', default="", type=str)
+    def get(self):
+        searchQuery = request.args.get('q', default="", type=str)
 
-        response=searchProducts(searchQuery)
+        response=searchProduct(searchQuery)
         data = json.loads(response.content)
         products = data['response']['products']
         return products
 
-api.add_resource(productQuery,"/product_query/<string:searchQuery>")
+api.add_resource(productQuery,"/product_query")
 
 
 #fetch products from certain category
 class category(Resource):
-    def get(self,catLevel1,catLevel2): #page number should also be an argument
-        data=getCategory(catLevel1,catLevel2)
+    def get(self): #page number should also be an argument
+        catLevel1 = request.args.get('cat1', default="", type=str)
+        catLevel2 = request.args.get('cat2', default="", type=str)
+        data=searchProducts(catLevel1,catLevel2)
         new_data = []
         for product in data:
-            new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})
+            new_data.append({"uniqueId":product[0], "Title":product[1].capitalize(), "Description":product[2],"Img_URL":product[3],"price":product[4]})
 
         return new_data
-api.add_resource(category,"/category/<string:catLevel1>&<string:catLevel2>")
+api.add_resource(category,"/category")
 
 if __name__=='__main__':
     app.run(port=7000,debug=True)

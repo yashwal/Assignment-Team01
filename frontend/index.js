@@ -23,9 +23,9 @@ window.onload=function(){
   }).then(response => response.json()).then(data =>{
       var prod_container=document.getElementById("outer-div");
       for( let i = 0; i < data.length; i++){
-          prod_container.innerHTML+=`<div class="column">
+          prod_container.innerHTML+=`<div class="column" id="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
           <img class="image" src="${data[i]['imageUrl'][0]}">
-          <p class="image_text">${data[i]['title']}</p>
+          <p class="image_text" >${data[i]['title']}</p>
           <p class="image_text">$${data[i]['price']}</p>
           </a>
       </div>`
@@ -47,7 +47,7 @@ window.onload=function(){
         console.log(data)
         var prod_container=document.getElementById("outer-div");
         for( let i = 0; i < data.length; i++){
-            prod_container.innerHTML+=`<div class="column">
+            prod_container.innerHTML+=`<div class="column" name="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
             <img class="image" src="${data[i]['Img_URL']}">
             <p class="image_text">${data[i]['Title']}</p>
             <p class="image_text">$${data[i]['price']}</p>
@@ -70,7 +70,7 @@ window.onload=function(){
   }).then(response => response.json()).then(data =>{
       var prod_container=document.getElementById("outer-div");
       for( let i = 0; i < data.length; i++){
-          prod_container.innerHTML+=`<div class="column">
+          prod_container.innerHTML+=`<div class="column" id="uid" value="${data[i]['uniqueId']} onclick="getUniqueID()">
           <img class="image" src="${data[i]['imageUrl'][0]}">
           <p class="image_text">${data[i]['title']}</p>
           <p class="image_text">$${data[i]['price']}</p>
@@ -79,7 +79,4 @@ window.onload=function(){
       }
   });
   }
-
-
 }
-// new comment

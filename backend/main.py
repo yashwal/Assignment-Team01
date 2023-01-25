@@ -17,7 +17,9 @@ api=Api(app)
 #product_id is given as input , returns the product details
 class fetchProducts(Resource):
     def get(self,productId):
+        #productId = request.args.get('uid', default="", type=str)
         data=getProducts(productId)
+        
         return data
 api.add_resource(fetchProducts,"/product/<string:productId>")
 

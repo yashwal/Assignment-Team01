@@ -1,7 +1,7 @@
 
 .header {
   overflow: hidden;
-  background-color: #e88181;
+  background-color: #C3ACD0;
   padding-bottom: 10px; 
 }
 
@@ -26,33 +26,50 @@
   margin-top: 25px;
   height: 35px;
   width: 35px;
-  border-radius: 5%;;
-  color: #e88181;
-  background-color: rgb(255, 243, 243);
+  border-radius: 50%;
+  color: #860000;
+  background-color: #FFFBF5;
 }
 
 .searchbar{
   width:50%;
-  height: 40px;
-  margin-top: 20px;
+  height: 35px;
+  margin-top: 22px;
   margin-right:45px;
   float:right;
-  border-radius: 10px;
+  border-radius: 20px;
   padding-left: 10px;
+  color: #860000;
+  background-color: #FFFBF5;
+  
+  
 }
 
 .dropdown{
   height: 3%;
   width:7%;
   margin-left: 10px;
-  background-color:rgb(255, 243, 243);
-  color:black
+  background-color:rgb(252, 242, 242);
+  border: none;
+  color:black;
+  cursor: pointer;
+}
+.button{
+  height: 4%;
+  width:7%;
+  margin-left: 10px;
+  background-color:rgb(252, 242, 242);
+  border: none;
+  color:black;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .grid {
   display: grid;
   gap: 1px;
   grid-template-columns: repeat(3, 1fr);
+  background-color: rgb(255, 255, 255)
 }
 
 div > div{
@@ -79,6 +96,7 @@ div > div{
   font-size: 16px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   padding: 0% 25% 0% 28%;
+  
 }
 
 .column:hover{
@@ -103,4 +121,11 @@ div > div{
   text-decoration: none;
   color:black;
   outline:none;
+}
+
+.center {
+  display: block;
+  margin-left: 300px;
+  margin-right: 500px;
+  width: 100%;
 }

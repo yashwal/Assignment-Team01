@@ -22,6 +22,12 @@ window.onload=function(){
     
   }).then(response => response.json()).then(data =>{
       var prod_container=document.getElementById("outer-div");
+      if(data.length==0){
+        prod_container.innerHTML+= `</div>
+        <img src="iamge.jpg" width="1100" height="700" class="center">
+        </a>
+        </div>`
+      }
       for( let i = 0; i < data.length; i++){
           prod_container.innerHTML+=`<div class="column" id="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
           <img class="image" src="${data[i]['imageUrl'][0]}">
@@ -70,7 +76,7 @@ window.onload=function(){
   }).then(response => response.json()).then(data =>{
       var prod_container=document.getElementById("outer-div");
       for( let i = 0; i < data.length; i++){
-          prod_container.innerHTML+=`<div class="column" id="uid" value="${data[i]['uniqueId']} onclick="getUniqueID()">
+          prod_container.innerHTML+=`<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
           <img class="image" src="${data[i]['imageUrl'][0]}">
           <p class="image_text">${data[i]['title']}</p>
           <p class="image_text">$${data[i]['price']}</p>

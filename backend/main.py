@@ -82,6 +82,20 @@ class category(Resource):
         return new_data
 api.add_resource(category,"/category")
 
+class productSort(Resource):
+    def get(self,searchQuery,sortKey):
+        if sortKey=='ftrd':
+            response = searchProduct(searchQuery)
+        else:
+            response=searchSorted(searchQuery,sortKey)
+        data = json.loads(response.content)
+        products = data['response']['products']
+        print(products[0]['name'])
+        return products
+
+api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>")
+
+
 if __name__=='__main__':
     app.run(port=7000,debug=True)
 

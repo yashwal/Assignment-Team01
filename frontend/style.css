@@ -106,7 +106,7 @@ div > div{
 }
 
 .image:hover{
-  box-shadow: rgba(255, 0, 0, 0.12) 0px 54px 55px, rgba(255, 0, 0, 0.12) 0px -12px 30px, rgba(255, 0, 0, 0.12) 0px 4px 6px, rgba(255, 0, 0, 0.17) 0px 12px 13px, rgba(255, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(170, 0, 255, 0.12) 0px 54px 55px, rgba(170, 0, 255, 0.12) 0px -12px 30px, rgba(170, 0, 255, 0.12) 0px 4px 6px, rgba(170, 0, 255, 0.17) 0px 12px 13px, rgba(170, 0, 255, 0.09) 0px -3px 5px;
   transform: scale(1.2,1.1);
   border-radius: 5%;
 }
@@ -128,4 +128,14 @@ div > div{
   margin-left: 300px;
   margin-right: 500px;
   width: 100%;
+}
+
+#sort{
+  background-color: rgb(255, 243, 243);
+  margin: 10px 0px 10px 90%;
+}
+
+.sub-header{
+  background-color: #f8edff;
+  margin: 0px 7.5px 0px 7.5px;
 }

@@ -9,8 +9,14 @@
 </head>
 <iframe src="header.html" width=100% frameborder=0></iframe>
 <body>
-    <div id ="outer-div" class="grid">
-        
+    <div class="sub-header">
+    <select class="dropdown" value="sort" id="sort" onchange="sortedView()">
+        <option value="ftrd">Featured</option>
+        <option value="price asc">Price Low - High</option>
+        <option value="price desc">Price High - Low</option>
+    </select>
+    </div>
+    <div id ="outer-div" class="grid">      
 <script src="index.js"></script>
 </div>
 </body>

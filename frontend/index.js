@@ -1,4 +1,42 @@
-window.onload=function(){
+function sortedView(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  prod_query =urlParams.get('q');
+  selector = document.querySelector("#sort");
+  sortKey = selector.value;
+  console.log(sortKey)
+  fetch(`http://127.0.0.1:7000/product_query/${prod_query}/${sortKey}`,{
+    method : 'GET',
+    mode :'cors',
+    headers:{
+      'Access-Control-Allow-Origin':'*',
+      'Accept': 'application/json',
+      'Content-Type': 'application/json;charset=utf-8',
+      
+    }
+    
+  }).then(response => response.json()).then(data =>{
+      var prod_container=document.getElementById("outer-div");
+      prod_container.innerHTML = '';
+      if(data.length==0){
+        prod_container.innerHTML+= `</div>
+        <img src="iamge.jpg" width="1100" height="700" class="center">
+        </a>
+        </div>`
+      }
+      for( let i = 0; i < data.length; i++){
+          prod_container.innerHTML+=`<div class="column" id="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
+          <img class="image" src="${data[i]['imageUrl'][0]}">
+          <p class="image_text" >${data[i]['title']}</p>
+          <p class="image_text">$${data[i]['price']}</p>
+          </a>
+      </div>`
+      }
+  });
+  
+}
+
+window.onload=function reload(){
   const queryString = window.location.search;
   let prod_query=null;
   let catLevel1=null;
@@ -22,6 +60,7 @@ window.onload=function(){
     
   }).then(response => response.json()).then(data =>{
       var prod_container=document.getElementById("outer-div");
+      prod_container.innerHTML = '';
       if(data.length==0){
         prod_container.innerHTML+= `</div>
         <img src="iamge.jpg" width="1100" height="700" class="center">
@@ -50,8 +89,9 @@ window.onload=function(){
       }
       
     }).then(response => response.json()).then(data =>{
-        console.log(data)
+        //console.log(data)
         var prod_container=document.getElementById("outer-div");
+        prod_container.innerHTML = '';
         for( let i = 0; i < data.length; i++){
             prod_container.innerHTML+=`<div class="column" name="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
             <img class="image" src="${data[i]['Img_URL']}">
@@ -75,6 +115,7 @@ window.onload=function(){
     
   }).then(response => response.json()).then(data =>{
       var prod_container=document.getElementById("outer-div");
+      prod_container.innerHTML = '';
       for( let i = 0; i < data.length; i++){
           prod_container.innerHTML+=`<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
           <img class="image" src="${data[i]['imageUrl'][0]}">
@@ -86,3 +127,4 @@ window.onload=function(){
   });
   }
 }
+

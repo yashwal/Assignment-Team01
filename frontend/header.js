@@ -3,6 +3,10 @@ function getQuery(){
   console.log(searchQuery)
   window.parent.location=`index.html?q=${searchQuery}`;
 }
+
+function home(){
+  window.parent.location=`index.html?q=${'*'}`;
+}
   
 function getCategory(cat1){
   let selector;

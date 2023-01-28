@@ -41,7 +41,7 @@
   padding-left: 10px;
   color: #860000;
   background-color: #FFFBF5;
-  
+  font-size: 18px;
   
 }
 
@@ -81,6 +81,7 @@ div > div{
   display: block;
   height: 250px;
   width: 200px;
+  border-radius: 10px;
 }
 
 .image_text{

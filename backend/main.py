@@ -1,6 +1,5 @@
 from flask import *
 from flask_restful import Api,Resource
-
 from flask_cors import CORS
 from dataRetrieval import *
 from dataInsertion import *
@@ -90,10 +89,29 @@ class productSort(Resource):
             response=searchSorted(searchQuery,sortKey)
         data = json.loads(response.content)
         products = data['response']['products']
-        print(products[0]['name'])
+        #print(products[0]['name'])
         return products
-
 api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>")
+
+class categorySort(Resource):
+    def get(self): #page number should also be an argument
+        catLevel1 = request.args.get('cat1', default="", type=str)
+        catLevel2 = request.args.get('cat2', default="", type=str)
+        sortKey = request.args.get('sortKey', default="ftrd", type =str)
+        data=searchProducts(catLevel1,catLevel2)
+        
+        new_data=[]
+        for product in data:
+            new_data.append({"uniqueId":product[0], "Title":product[1].capitalize(), "Description":product[2],"Img_URL":product[3],"price":product[4]})
+        
+        if(sortKey=="price asc"):
+            new_data = sorted(new_data, key=lambda k: k['price'])
+        elif(sortKey=="price desc"):
+            new_data = sorted(new_data, key=lambda k: k['price'], reverse=True)
+
+        return new_data
+
+api.add_resource(categorySort,"/categorySort")
 
 
 if __name__=='__main__':

@@ -3,6 +3,7 @@
   overflow: hidden;
   background-color: #C3ACD0;
   padding-bottom: 10px; 
+  height: 100%;
 }
 
 .header a {
@@ -118,12 +119,6 @@ div > div{
   border-radius: 20%;;
 }
 
-.link{
-  text-decoration: none;
-  color:black;
-  outline:none;
-}
-
 .center {
   display: block;
   margin-left: 300px;
@@ -139,4 +134,9 @@ div > div{
 .sub-header{
   background-color: #f8edff;
   margin: 0px 7.5px 0px 7.5px;
+}
+
+.footer{
+  border: none;
+  margin-top: 10px;
 }

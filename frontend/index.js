@@ -25,6 +25,9 @@ function sortedView(){
       }
       
     }).then(response => response.json()).then(data =>{
+        var pageTotal = Math.ceil(data[0]/9);
+        console.log(pageTotal)
+        var data = data[1];
         var prod_container=document.getElementById("outer-div");
         prod_container.innerHTML = '';
         if(data.length==0){
@@ -56,7 +59,9 @@ function sortedView(){
       }
       
     }).then(response => response.json()).then(data =>{
-        //console.log(data)
+        var pageTotal = Math.ceil(data[0]/9);
+        console.log(pageTotal)
+        var data = data[1];
         var prod_container=document.getElementById("outer-div");
         prod_container.innerHTML = '';
         for( let i = 0; i < data.length; i++){
@@ -82,6 +87,9 @@ function sortedView(){
       }
       
     }).then(response => response.json()).then(data =>{
+        var pageTotal = Math.ceil(data[0]/9);
+        console.log(pageTotal)
+        var data = data[1];
         var prod_container=document.getElementById("outer-div");
         prod_container.innerHTML = '';
         for( let i = 0; i < data.length; i++){
@@ -103,14 +111,15 @@ window.onload=function reload(){
   let prod_query=null;
   let catLevel1=null;
   let catLevel2=null;
+  // let pageNumber = 1;
   const urlParams = new URLSearchParams(queryString);
   prod_query =urlParams.get('q');
   catLevel1 =urlParams.get('cat1');
   catLevel2 =urlParams.get('cat2');
-
-
+  pageNumber = urlParams.get('page')
+  
   if (prod_query!=null){
-      fetch(`http://127.0.0.1:7000/product_query?q=${prod_query}`,{
+      fetch(`http://127.0.0.1:7000/product_query?q=${prod_query}&page=${pageNumber}`,{
     method : 'GET',
     mode :'cors',
     headers:{
@@ -121,6 +130,10 @@ window.onload=function reload(){
     }
     
   }).then(response => response.json()).then(data =>{
+      var pages = data[0]
+      var pageTotal = Math.ceil(pages/9);
+      console.log(data[0])
+      var data = data[1];
       var prod_container=document.getElementById("outer-div");
       prod_container.innerHTML = '';
       if(data.length==0){
@@ -137,6 +150,14 @@ window.onload=function reload(){
           </a>
       </div>`
       }
+      pageNumber++;
+      var footer_container = document.getElementById("footer-div");
+      footer_container.innerHTML = `<li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">
+          Showing ${(pageNumber-2)*9}-${(pageNumber-1)*9} of ${pages} products
+      </li>`
   });
   }
     else if (catLevel1!=null ){
@@ -151,7 +172,9 @@ window.onload=function reload(){
       }
       
     }).then(response => response.json()).then(data =>{
-        //console.log(data)
+        var pageTotal = Math.ceil(data[0]/9);
+        // console.log(data[0])
+        var data = data[1];
         var prod_container=document.getElementById("outer-div");
         prod_container.innerHTML = '';
         for( let i = 0; i < data.length; i++){
@@ -176,6 +199,9 @@ window.onload=function reload(){
     }
     
   }).then(response => response.json()).then(data =>{
+      var pageTotal = Math.ceil(data[0]/9);
+      console.log(pageTotal)
+      var data = data[1];
       var prod_container=document.getElementById("outer-div");
       prod_container.innerHTML = '';
       for( let i = 0; i < data.length; i++){

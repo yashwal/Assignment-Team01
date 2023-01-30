@@ -5,6 +5,7 @@ from dataRetrieval import *
 from dataInsertion import *
 from dataUpdation import *
 from searchapi import *
+import math
 import json
 
 
@@ -59,11 +60,14 @@ api.add_resource(upload,"/upload")
 class productQuery(Resource):
     def get(self):
         searchQuery = request.args.get('q', default="", type=str)
-
-        response=searchProduct(searchQuery)
+        pageNumber = request.args.get('page', default=1, type=int)
+        pageNumber=(pageNumber-1)*9
+        print(pageNumber)
+        response=searchProduct(searchQuery,pageNumber)
         data = json.loads(response.content)
         products = data['response']['products']
-        return products
+        productsNumber = data['response']['numberOfProducts']
+        return [productsNumber,products]
 
 api.add_resource(productQuery,"/product_query")
 
@@ -77,8 +81,8 @@ class category(Resource):
         new_data = []
         for product in data:
             new_data.append({"uniqueId":product[0], "Title":product[1].capitalize(), "Description":product[2],"Img_URL":product[3],"price":product[4]})
+        return [len(new_data),new_data]
 
-        return new_data
 api.add_resource(category,"/category")
 
 class productSort(Resource):
@@ -89,8 +93,10 @@ class productSort(Resource):
             response=searchSorted(searchQuery,sortKey)
         data = json.loads(response.content)
         products = data['response']['products']
-        #print(products[0]['name'])
-        return products
+        productsNumber = data['response']['numberOfProducts']
+        totalPages = math.ceil(productsNumber/9)
+        return [totalPages,products]
+
 api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>")
 
 class categorySort(Resource):
@@ -108,8 +114,7 @@ class categorySort(Resource):
             new_data = sorted(new_data, key=lambda k: k['price'])
         elif(sortKey=="price desc"):
             new_data = sorted(new_data, key=lambda k: k['price'], reverse=True)
-
-        return new_data
+        return [len(new_data),new_data]
 
 api.add_resource(categorySort,"/categorySort")
 

@@ -1,7 +1,7 @@
 function getQuery(){
   let searchQuery = document.getElementById("query").value
   console.log(searchQuery)
-  window.parent.location=`index.html?q=${searchQuery}`;
+  window.parent.location=`index.html?q=${searchQuery}&page=1`;
 }
 
 function home(){

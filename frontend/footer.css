@@ -1,0 +1,42 @@
+.footer-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    margin-top:20px;
+    border: none;
+}
+
+.page{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    background-color:#C3ACD0;
+    border-color: none;
+}
+
+.text-footer{
+    margin: 0.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: black;
+    border: none;
+    background-color: #f8edff;
+    color: black;
+    font-size: 16px;
+    border: none;
+}
+
+.text-footer:hover{
+    transform: scale(1.2);
+    background-color:#f8edff;
+}
+
+.product-text{
+    text-align: center;
+    margin: 15px 15px 15px 50px;
+    font-weight: 200;
+    font-size: 18px;
+}

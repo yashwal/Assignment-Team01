@@ -77,18 +77,22 @@ class category(Resource):
     def get(self): #page number should also be an argument
         catLevel1 = request.args.get('cat1', default="", type=str)
         catLevel2 = request.args.get('cat2', default="", type=str)
+        pageNumber = request.args.get('page', default=1, type=int)
+        pageNumber=(pageNumber-1)*9
         data=searchProducts(catLevel1,catLevel2)
         new_data = []
         for product in data:
             new_data.append({"uniqueId":product[0], "Title":product[1].capitalize(), "Description":product[2],"Img_URL":product[3],"price":product[4]})
-        return [len(new_data),new_data]
+        sliced_data=new_data[pageNumber:pageNumber+9]
+        return [len(new_data),sliced_data]
 
 api.add_resource(category,"/category")
 
 class productSort(Resource):
-    def get(self,searchQuery,sortKey):
+    def get(self,searchQuery,sortKey,pageNumber):
+        pageNumber=(pageNumber-1)*9
         if sortKey=='ftrd':
-            response = searchProduct(searchQuery)
+            response = searchProduct(searchQuery,pageNumber)
         else:
             response=searchSorted(searchQuery,sortKey)
         data = json.loads(response.content)
@@ -97,13 +101,15 @@ class productSort(Resource):
         totalPages = math.ceil(productsNumber/9)
         return [totalPages,products]
 
-api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>")
+api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>/<int:pageNumber>")
 
 class categorySort(Resource):
     def get(self): #page number should also be an argument
         catLevel1 = request.args.get('cat1', default="", type=str)
         catLevel2 = request.args.get('cat2', default="", type=str)
         sortKey = request.args.get('sortKey', default="ftrd", type =str)
+        pageNumber = request.args.get('page', default=1, type=int)
+        pageNumber=(pageNumber-1)*9
         data=searchProducts(catLevel1,catLevel2)
         
         new_data=[]
@@ -114,7 +120,9 @@ class categorySort(Resource):
             new_data = sorted(new_data, key=lambda k: k['price'])
         elif(sortKey=="price desc"):
             new_data = sorted(new_data, key=lambda k: k['price'], reverse=True)
-        return [len(new_data),new_data]
+
+        sliced_data=new_data[pageNumber:pageNumber+9]
+        return [len(new_data),sliced_data]
 
 api.add_resource(categorySort,"/categorySort")
 

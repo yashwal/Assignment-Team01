@@ -13,7 +13,8 @@
     
 <div class="sub-header">
     <select class="dropdown" value="sort" id="sort" onchange="sortedView()">
-        <option value="ftrd">Featured</option>
+        <option value="">---Select---</option>
+        <option value="">Featured</option>
         <option value="price asc">Price Low - High</option>
         <option value="price desc">Price High - Low</option>
     </select>
@@ -22,22 +23,8 @@
 <script src="index.js"></script>
 </div>
 </body>
-<footer>
+<footer class="foot">
     <section id="footer-div" class="footer-section">
-    <ul class="page">
-        <li class="text-footer" onclick="prevPage()">
-            &lt;
-        </li>
-        <li class="text-footer" id="pageNumber" value="2">
-            1
-        </li>
-        <li class="text-footer" onclick="nextPage()">
-            &gt;
-        </li>
-        <li class="product-text">
-            Showing 9 of 100 products
-        </li>
-    </ul>
 </section>
 <script src="footer.js"></script>
 </footer>

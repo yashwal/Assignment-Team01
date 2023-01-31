@@ -54,6 +54,7 @@
   border: none;
   color:black;
   cursor: pointer;
+  text-align: center;
 }
 .button{
   height: 4%;
@@ -70,7 +71,10 @@
   display: grid;
   gap: 1px;
   grid-template-columns: repeat(3, 1fr);
-  background-color: rgb(255, 255, 255)
+  background-color:rgb(255, 255, 255);;
+  margin: 7.5px 7.5px 0px 7.5px;
+  padding-bottom: 15px;
+
 }
 
 div > div{
@@ -105,12 +109,14 @@ div > div{
   transform:scale(1.2);
   border-radius: 5%;
   margin-top: 25px;
+  transition:.5s;
 }
 
 .image:hover{
-  box-shadow: rgba(170, 0, 255, 0.12) 0px 54px 55px, rgba(170, 0, 255, 0.12) 0px -12px 30px, rgba(170, 0, 255, 0.12) 0px 4px 6px, rgba(170, 0, 255, 0.17) 0px 12px 13px, rgba(170, 0, 255, 0.09) 0px -3px 5px;
+  box-shadow: rgba(170, 0, 255, 0.10) 0px 54px 55px, rgba(170, 0, 255, 0.10) 0px -12px 30px, rgba(170, 0, 255, 0.10) 0px 4px 6px, rgba(170, 0, 255, 0.15) 0px 12px 13px, rgba(170, 0, 255, 0.09) 0px -3px 5px;
   transform: scale(1.2,1.1);
   border-radius: 5%;
+  transition:.5s;
 }
 
 .searchbutton:hover{
@@ -134,9 +140,4 @@ div > div{
 .sub-header{
   background-color: #f8edff;
   margin: 0px 7.5px 0px 7.5px;
-}
-
-.footer{
-  border: none;
-  margin-top: 10px;
 }

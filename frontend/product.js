@@ -4,7 +4,7 @@ window.onload = function(){
     const urlParams = new URLSearchParams(queryString);
     var uniqueId =urlParams.get('uid')
    
-        fetch(`http://127.0.0.1:7000/product/${uniqueId}`,{
+        fetch(`http://127.0.0.1:7002/product/${uniqueId}`,{
         method : 'GET',
         mode :'cors',
         headers:{

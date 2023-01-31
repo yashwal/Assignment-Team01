@@ -143,7 +143,7 @@ api.add_resource(categorySort,"/categorySort")
 
 
 if __name__=='__main__':
-    app.run(port=7000,debug=True)
+    app.run(port=7002,debug=True)
 
 
 #new comment

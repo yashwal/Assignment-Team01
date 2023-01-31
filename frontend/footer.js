@@ -4,6 +4,11 @@ function fetchSortKey(){
     return sortKey;
 }
 
+function home(){
+    window.parent.location=`index.html?q=*`;
+  }
+    
+
 function prevPage(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

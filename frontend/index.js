@@ -17,7 +17,7 @@ function sortedView(){
 
   if (prod_query!=null){
     window.parent.location = `index.html?q=${prod_query}&page=1&sort=${sortKey}`
-    fetch(`http://127.0.0.1:7000/product_query/${prod_query}/${sortKey}/1`,{
+    fetch(`http://127.0.0.1:7002/product_query/${prod_query}/${sortKey}/1`,{
       method : 'GET',
       mode :'cors',
       headers:{
@@ -31,6 +31,7 @@ function sortedView(){
         var pages = data[0]
         var pageTotal = Math.ceil(pages/9);
         var data = data[1];
+        console.log((pageNumber-1)*9,(pageNumber-2)*9)
         var prod_container=document.getElementById("outer-div");
         prod_container.innerHTML = '';
         if(data.length==0){
@@ -47,23 +48,40 @@ function sortedView(){
             </a>
         </div>`
         }
-      pageNumber++;
-      var footer_container = document.getElementById("footer-div");
-      footer_container.innerHTML = ` <ul class="page">
-      <li class="text-footer" onclick="prevPage()"> &lt; </li>
-      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
-      <li class="text-footer" onclick="nextPage()"> &gt; </li>
-      <li class="product-text">
-          Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products
-      </li>
-      </ul>`
+        pageNumber++;
+        var pageDisplay = ""
+        var footer_container = document.getElementById("footer-div");
+        if ((pageNumber-1)*9 < pages){
+          pageDisplay = `Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products`;
+          footer_container.innerHTML = ` <ul class="page">
+        <li class="text-footer" onclick="prevPage()"> &lt; </li>
+        <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+        <li class="text-footer" onclick="nextPage()"> &gt; </li>
+        <li class="product-text">${pageDisplay}</li></ul>`
+        }
+        else if (((pageNumber-2)*9+1 <= pages)&&((pageNumber-1)*9+1 > pages)){
+          pageDisplay = `Showing ${(pageNumber-2)*9+1}-${pages} of ${pages} products`;
+          footer_container.innerHTML = ` <ul class="page">
+        <li class="text-footer" onclick="prevPage()"> &lt; </li>
+        <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+        <li class="text-footer" onclick="nextPage()"> &gt; </li>
+        <li class="product-text">${pageDisplay}</li></ul>`
+        }
+        else{
+          pageDisplay = ``;
+          footer_container.innerHTML = ` <ul class="page">
+        <li class="return-home" onclick="home()">Return to Home</li>
+        <li></li>
+        <li></li>
+        <li></li></ul>`
+        }
     });
   }
 
   else if (catLevel1!=null ){
     window.parent.location = `index.html?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`
     console.log(sortKey)
-    fetch(`http://127.0.0.1:7000/categorySort?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sortKey=${sortKey}`,{
+    fetch(`http://127.0.0.1:7002/categorySort?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sortKey=${sortKey}`,{
       method : 'GET',
       mode :'cors',
       headers:{
@@ -88,20 +106,37 @@ function sortedView(){
         </div>`
         }
         pageNumber++;
-        var footer_container = document.getElementById("footer-div");
+      var pageDisplay = ""
+      var footer_container = document.getElementById("footer-div");
+      if ((pageNumber-1)*9 < pages){
+        pageDisplay = `Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products`;
         footer_container.innerHTML = ` <ul class="page">
-        <li class="text-footer" onclick="prevPage()"> &lt; </li>
-        <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
-        <li class="text-footer" onclick="nextPage()"> &gt; </li>
-        <li class="product-text">
-            Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products
-        </li>
-        </ul>`
+      <li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
+      }
+      else if (((pageNumber-2)*9+1 <= pages)&&((pageNumber-1)*9+1 > pages)){
+        pageDisplay = `Showing ${(pageNumber-2)*9+1}-${pages} of ${pages} products`;
+        footer_container.innerHTML = ` <ul class="page">
+      <li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
+      }
+      else{
+        pageDisplay = ``;
+        footer_container.innerHTML = ` <ul class="page">
+      <li class="return-home" onclick="home()">Return to Home</li>
+      <li></li>
+      <li></li>
+      <li></li></ul>`
+      }
     });
   }
 
     else {
-      fetch(`http://127.0.0.1:7000/product_query/*/${sortKey}`,{
+      fetch(`http://127.0.0.1:7002/product_query/*/${sortKey}`,{
       method : 'GET',
       mode :'cors',
       headers:{
@@ -147,7 +182,7 @@ window.onload=function reload(){
   }
 
   if (prod_query!=null){
-    fetch(`http://127.0.0.1:7000/product_query?q=${prod_query}&page=${pageNumber}&sort=${sortKey}`,{
+    fetch(`http://127.0.0.1:7002/product_query?q=${prod_query}&page=${pageNumber}&sort=${sortKey}`,{
     method : 'GET',
     mode :'cors',
     headers:{
@@ -179,19 +214,37 @@ window.onload=function reload(){
       </div>`
       }
       pageNumber++;
+      var pageDisplay = ""
       var footer_container = document.getElementById("footer-div");
-      footer_container.innerHTML = ` <ul class="page">
+      if ((pageNumber-1)*9 < pages){
+        pageDisplay = `Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products`;
+        footer_container.innerHTML = ` <ul class="page">
       <li class="text-footer" onclick="prevPage()"> &lt; </li>
       <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
       <li class="text-footer" onclick="nextPage()"> &gt; </li>
-      <li class="product-text">
-          Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products
-      </li>
-      </ul>`
+      <li class="product-text">${pageDisplay}</li></ul>`
+      }
+      else if (((pageNumber-2)*9+1 <= pages)&&((pageNumber-1)*9+1 > pages)){
+        pageDisplay = `Showing ${(pageNumber-2)*9+1}-${pages} of ${pages} products`;
+        footer_container.innerHTML = ` <ul class="page">
+      <li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
+      }
+      else{
+        pageDisplay = ``;
+        prod_container.innerHTML+= `</div>
+        <img src="iamge.jpg" width="1000" height="650" class="center">
+        </a>
+        </div>`;
+        footer_container.innerHTML = ` <ul>
+      <li class="return-home" onclick="home()">Return to Home</li></ul>`
+      }
   });
   }
     else if (catLevel1!=null ){
-      fetch(`http://127.0.0.1:7000/category?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`,{
+      fetch(`http://127.0.0.1:7002/category?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`,{
       method : 'GET',
       mode :'cors',
       headers:{
@@ -216,20 +269,38 @@ window.onload=function reload(){
             </a>
         </div>`
         }
-      pageNumber++;
-      var footer_container = document.getElementById("footer-div");
-      footer_container.innerHTML = ` <ul class="page">
-      <li class="text-footer" onclick="prevPage()"> &lt; </li>
-      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
-      <li class="text-footer" onclick="nextPage()"> &gt; </li>
-      <li class="product-text">
-          Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products
-      </li>
-      </ul>`
+        pageNumber++;
+        var pageDisplay = ""
+        var footer_container = document.getElementById("footer-div");
+        if ((pageNumber-1)*9 < pages){
+          pageDisplay = `Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products`;
+          footer_container.innerHTML = ` <ul class="page">
+        <li class="text-footer" onclick="prevPage()"> &lt; </li>
+        <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+        <li class="text-footer" onclick="nextPage()"> &gt; </li>
+        <li class="product-text">${pageDisplay}</li></ul>`
+        }
+        else if (((pageNumber-2)*9+1 <= pages)&&((pageNumber-1)*9+1 > pages)){
+          pageDisplay = `Showing ${(pageNumber-2)*9+1}-${pages} of ${pages} products`;
+          footer_container.innerHTML = ` <ul class="page">
+        <li class="text-footer" onclick="prevPage()"> &lt; </li>
+        <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+        <li class="text-footer" onclick="nextPage()"> &gt; </li>
+        <li class="product-text">${pageDisplay}</li></ul>`
+        }
+        else{
+          pageDisplay = ``;
+          prod_container.innerHTML+= `</div>
+        <img src="iamge.jpg" width="1000" height="650" class="center">
+        </a>
+        </div>`;
+          footer_container.innerHTML = ` <ul>
+        <li class="return-home" onclick="home()">Return to Home</li></ul>`
+        }
     });
   }
     else {
-      fetch(`http://127.0.0.1:7000/product_query?q=*&page=${pageNumber}&sort=${sortKey}`,{
+      fetch(`http://127.0.0.1:7002/product_query?q=*&page=${pageNumber}&sort=${sortKey}`,{
     method : 'GET',
     mode :'cors',
     headers:{
@@ -254,15 +325,34 @@ window.onload=function reload(){
       </div>`
       }
       pageNumber++;
+      var pageDisplay = ""
       var footer_container = document.getElementById("footer-div");
-      footer_container.innerHTML = ` <ul class="page">
+      if ((pageNumber-1)*9 < pages){
+        pageDisplay = `Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products`;
+        footer_container.innerHTML = ` <ul class="page">
       <li class="text-footer" onclick="prevPage()"> &lt; </li>
       <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
       <li class="text-footer" onclick="nextPage()"> &gt; </li>
-      <li class="product-text">
-          Showing ${(pageNumber-2)*9+1}-${(pageNumber-1)*9} of ${pages} products
-      </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
+      }
+      else if (((pageNumber-2)*9+1 <= pages)&&((pageNumber-1)*9+1 > pages)){
+        pageDisplay = `Showing ${(pageNumber-2)*9+1}-${pages} of ${pages} products`;
+        footer_container.innerHTML = ` <ul class="page">
+      <li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber-1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
+      }
+      else{
+        pageDisplay = ``;
+        prod_container.innerHTML+= `</div>
+        <img src="iamge.jpg" width="1000" height="650" class="center">
+        </a>
+        </div>`
+        footer_container.innerHTML = ` <ul>
+      <li class="return_home" onclick="home()">Return to Home</li>
       </ul>`
+      }
   });
   }
 }

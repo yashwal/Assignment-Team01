@@ -1,4 +1,6 @@
-from dbConnection import *
+import sys
+sys.path.append('..')
+from database.Connection import *
 
 
 def checkProductID(productId):
@@ -19,7 +21,7 @@ def updateDB(newTitle,newDesc,newUrl,newPrice,productId):
     res=connectDB()
     conn=res[0]
     cur=res[1]
-    cur.execute("update product02 set title = %s,description = %s,image_url = %s,price = %s where product_id=%s",(str(newTitle),str(newDesc),str(newUrl),newPrice,productId,))
+    cur.execute("update product set title = %s,description = %s,image_url = %s,price = %s where product_id=%s",(str(newTitle),str(newDesc),str(newUrl),newPrice,productId,))
     conn.commit()
     cur.close()
     conn.close()

@@ -1,11 +1,16 @@
+import sys
+sys.path.append('..')
+
 from flask import *
 from flask_restful import Api,Resource
 from flask_cors import CORS
 from flask_caching import Cache
-from dataRetrieval import *
-from dataInsertion import *
-from dataUpdation import *
-from searchapi import *
+
+from category.categoryInsertion import *
+from category.categoryRetreival import *
+from product.productInsertion import *
+from product.productRetreival import *
+from search.searchapi import *
 import math
 import json
 
@@ -34,8 +39,9 @@ api.add_resource(fetchProducts,"/product/<string:productId>")
 class upload(Resource):
     def post(self):
         data=request.json
-        #uploadProduct(data)
-        uploadTable(data)
+        
+        categoryTable(data)
+        productTable(data)
 
         return {"Data Ingestion":"Successfull!!!"}
 

@@ -14,13 +14,11 @@ window.onload = function(){
         
         }
   }).then(response => response.json()).then(data =>{
-    console.log(uniqueId,"kkkk")
       var prod_container=document.getElementById("row");
           prod_container.innerHTML+=`<div class="column1">
               <img class="image" src="${data['image_url']}">
           </div>
           <div class="column2">
-              <p class="image_path">Home/Product/${uniqueId}</p>
               <p class="image_title">${data['title']}</p>
               <p class="price">$ ${data['price']}</p>
               <p class="image_body">${data['description']}</p>

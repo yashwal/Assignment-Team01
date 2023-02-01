@@ -44,7 +44,7 @@ function sortedView(){
             prod_container.innerHTML+=`<div class="column" id="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
             <img class="image" src="${data[i]['imageUrl'][0]}">
             <p class="image_text" >${data[i]['title']}</p>
-            <p class="image_text">$${data[i]['price']}</p>
+            <p class="price">$ ${data[i]['price']}</p>
             </a>
         </div>`
         }
@@ -101,7 +101,7 @@ function sortedView(){
             prod_container.innerHTML+=`<div class="column" name="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
             <img class="image" src="${data[i]['Img_URL']}">
             <p class="image_text">${data[i]['Title']}</p>
-            <p class="image_text">$${data[i]['price']}</p>
+            <p class="price">$ ${data[i]['price']}</p>
             </a>
         </div>`
         }
@@ -156,7 +156,7 @@ function sortedView(){
             prod_container.innerHTML+=`<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
             <img class="image" src="${data[i]['imageUrl'][0]}">
             <p class="image_text">${data[i]['title']}</p>
-            <p class="image_text">$${data[i]['price']}</p>
+            <p class="price">$ ${data[i]['price']}</p>
             </a>
         </div>`
         }
@@ -209,7 +209,7 @@ window.onload=function reload(){
           prod_container.innerHTML+=`<div class="column" id="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
           <img class="image" src="${data[i]['imageUrl'][0]}">
           <p class="image_text" >${data[i]['title']}</p>
-          <p class="image_text">$${data[i]['price']}</p>
+          <p class="price">$${data[i]['price']}</p>
           </a>
       </div>`
       }
@@ -265,7 +265,7 @@ window.onload=function reload(){
             prod_container.innerHTML+=`<div class="column" name="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
             <img class="image" src="${data[i]['Img_URL']}">
             <p class="image_text">${data[i]['Title']}</p>
-            <p class="image_text">$${data[i]['price']}</p>
+            <p class="price">$ ${data[i]['price']}</p>
             </a>
         </div>`
         }
@@ -320,7 +320,7 @@ window.onload=function reload(){
           prod_container.innerHTML+=`<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
           <img class="image" src="${data[i]['imageUrl'][0]}">
           <p class="image_text">${data[i]['title']}</p>
-          <p class="image_text">$${data[i]['price']}</p>
+          <p class="price">$ ${data[i]['price']}</p>
           </a>
       </div>`
       }

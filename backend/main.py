@@ -1,6 +1,7 @@
 from flask import *
 from flask_restful import Api,Resource
 from flask_cors import CORS
+from flask_caching import Cache
 from dataRetrieval import *
 from dataInsertion import *
 from dataUpdation import *
@@ -11,11 +12,14 @@ import json
 
 app=Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
+app.config.from_object('config.BaseConfig')  # Set the configuration variables to the flask application
+cache = Cache(app)
 api=Api(app)
 
 
 #product_id is given as input , returns the product details
 class fetchProducts(Resource):
+    @cache.cached(timeout=30, query_string=True)
     def get(self,productId):
         #productId = request.args.get('uid', default="", type=str)
         data=getProducts(productId)
@@ -25,31 +29,13 @@ api.add_resource(fetchProducts,"/product/<string:productId>")
 
 
 
-#update the product details if the product already exists in the database and the product_id is valid
-class updateProduct(Resource):
-    def put(self):
-        data=request.json
-        for i in data:
-            productId=i.get("uniqueId")
-            if(productId==None):
-                print({"Message":"Product ID is not given"})
-                break
-            if(checkProductID(productId)==0):
-                print({"Message":"Product ID is missing in DB"})
-                break
-            updateDB(i.get("title"),i.get("productDescription"),i.get("productImage"),i.get("price"),productId)
-            
-        return({"Message":"DB Updated","status":200})
-
-api.add_resource(updateProduct,"/updateProduct")               
-
 
 #upload the given data in the json file to postgreSQL table
 class upload(Resource):
     def post(self):
         data=request.json
-        uploadProduct(data)
-        uploadCategory(data)
+        #uploadProduct(data)
+        uploadTable(data)
 
         return {"Data Ingestion":"Successfull!!!"}
 
@@ -58,6 +44,7 @@ api.add_resource(upload,"/upload")
 
 #fetches ten products from unbxd search api and return it
 class productQuery(Resource):
+    @cache.cached(timeout=30, query_string=True)
     def get(self):
         searchQuery = request.args.get('q', default="", type=str)
         pageNumber = request.args.get('page', default=1, type=int)
@@ -79,6 +66,7 @@ api.add_resource(productQuery,"/product_query")
 
 #fetch products from certain category
 class category(Resource):
+    @cache.cached(timeout=30, query_string=True)
     def get(self): #page number should also be an argument
         catLevel1 = request.args.get('cat1', default="", type=str)
         catLevel2 = request.args.get('cat2', default="", type=str)
@@ -103,6 +91,7 @@ class category(Resource):
 api.add_resource(category,"/category")
 
 class productSort(Resource):
+    @cache.cached(timeout=30, query_string=True)
     def get(self,searchQuery,sortKey,pageNumber):
         pageNumber=max((pageNumber-1)*9,1)
         if sortKey=='ftrd':
@@ -117,6 +106,7 @@ class productSort(Resource):
 api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>/<int:pageNumber>")
 
 class categorySort(Resource):
+    @cache.cached(timeout=30, query_string=True)
     def get(self): #page number should also be an argument
         catLevel1 = request.args.get('cat1', default="", type=str)
         catLevel2 = request.args.get('cat2', default="", type=str)
@@ -143,7 +133,26 @@ api.add_resource(categorySort,"/categorySort")
 
 
 if __name__=='__main__':
-    app.run(port=7002,debug=True)
+    app.run(port=7002,debug=True,host = "0.0.0.0")
 
 
-#new comment
+#future work
+
+
+#update the product details if the product already exists in the database and the product_id is valid
+# class updateProduct(Resource):
+#     def put(self):
+#         data=request.json
+#         for i in data:
+#             productId=i.get("uniqueId")
+#             if(productId==None):
+#                 print({"Message":"Product ID is not given"})
+#                 break
+#             if(checkProductID(productId)==0):
+#                 print({"Message":"Product ID is missing in DB"})
+#                 break
+#             updateDB(i.get("title"),i.get("productDescription"),i.get("productImage"),i.get("price"),productId)
+            
+#         return({"Message":"DB Updated","status":200})
+
+# api.add_resource(updateProduct,"/updateProduct")  

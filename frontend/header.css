@@ -1,7 +1,6 @@
-
 .header {
     overflow: hidden;
-    background-color: #C3ACD0;
+    background-color: #4e56f5da;
     padding-bottom: 10px; 
   }
   
@@ -27,7 +26,7 @@
     height: 35px;
     width: 35px;
     border-radius: 50%;
-    color: #860000;
+    color: #4e56f5da;
     background-color: #FFFBF5;
   }
   
@@ -39,7 +38,7 @@
     float:right;
     border-radius: 20px;
     padding-left: 10px;
-    color: #860000;
+    color: #4e56f5da;
     background-color: #FFFBF5;
     font-size: 18px;
     

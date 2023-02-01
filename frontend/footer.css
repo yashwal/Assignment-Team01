@@ -12,7 +12,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0.25rem 0.5rem;
-    background-color:#C3ACD0;
+    background-color: #abcdef;
     border-color: none;
     margin-left: 7.5px;
     margin-right: 7.5px;
@@ -22,10 +22,9 @@
     margin: 0.25rem;
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
-    color: black;
+    color: #fffbf5;
     text-decoration: none;
-    background-color: #f8edff;
-    color: black;
+    background-color:#4e56f5da;
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -33,7 +32,7 @@
 
 .text-footer:hover{
     transform: scale(1.2);
-    background-color:#f8edff;
+    background-color:#4e56f5da;
     font-size: 20px;
 }
 
@@ -52,10 +51,9 @@
     margin: 0.25rem;
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
-    color: black;
     text-decoration: none;
-    background-color: #f8edff;
-    color: black;
+    background-color:#4e56f5da;
+    color: #fffbf5;
     font-size: 16px;
     border: none;
     cursor: pointer;

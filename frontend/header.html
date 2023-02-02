@@ -18,7 +18,7 @@
       </div>
 
     <div class="header">   
-        <select class="dropdown" value="men" id="cat1" onchange="getCategory('0')">
+        <!-- <select class="dropdown" value="men" id="cat1" onchange="getCategory('0')">
             <option value="0">Men</option>
             <option value="LabelsWeLove">Labels We Love</option>
             <option value="Suiting">Suiting</option>
@@ -50,8 +50,26 @@
             <option value="AccessoriesShoes">Accessories & Shoes</option>
             <option value="Jeans">Jeans</option>
             <option value="Others">Others</option>
-        </select>
-        <button class="button" id="exp" onclick="getCategory('2')" value="exp" class="dropdown">Gift Cards</button>
+        </select> -->
+        <div class="right-menu">
+        <button class="button" id="cat1" onclick="getCategory('0')" value="men">Men</button>
+            <div class="dropdown-menu">
+                <a value="LabelsWeLove">Labels We Love</a>
+                <a value="Suiting">Suiting</a>
+                <a value="ClearanceMen">Clearance Men</a>
+                <a value="UnderwearLounge">Underwear & Lounge</a>
+                <a value="NewArrivals">New Arrivals</a>
+                <a value="ExpressxNBA">Express X NBA</a>
+                <a value="Pants">Pants</a>
+                <a value="Accessories">Accessories</a>
+                <a value="Tops">Tops</a>
+                <a value="AccessoriesShoes">Accessories & Shoes</a>
+                <a value="Outerwear">Outerwear</a>
+                <a value="Others">Others</a>
+            </div>
+        </div>
+        <button class="button" id="cat2" onclick="getCategory('1')" value="women">Women</button>
+        <button class="button" id="exp" onclick="getCategory('2')" value="exp">Gift Cards</button>
     </div>
 </div>    
 </body>

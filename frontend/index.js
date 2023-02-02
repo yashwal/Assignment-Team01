@@ -1,4 +1,4 @@
-function sortedView(){
+function sortedView(sortKey){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   let prod_query=null;
@@ -10,10 +10,6 @@ function sortedView(){
   catLevel2 = urlParams.get('cat2');
   //pageNumber = urlParams.get('page');
   urlSortKey = urlParams.get('sort')
-
-  selector = document.querySelector("#sort");
-  sortKey = selector.value;
-  console.log(sortKey)
 
   if (prod_query!=null){
     window.parent.location = `index.html?q=${prod_query}&page=1&sort=${sortKey}`

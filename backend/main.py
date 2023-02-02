@@ -83,7 +83,7 @@ class category(Resource):
         #print(data)
         new_data = []
         for product in data:
-            new_data.append({"uniqueId":product[0], "Title":product[1].capitalize(), "Description":product[2],"Img_URL":product[3],"price":product[4]})
+            new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})
         
         if(sortKey=="price asc"):
             new_data = sorted(new_data, key=lambda k: float(k['price']))
@@ -91,7 +91,7 @@ class category(Resource):
             new_data = sorted(new_data, key=lambda k: float(k['price']), reverse=True)
         
         
-        sliced_data=new_data[pageNumber:pageNumber+9]
+        sliced_data=new_data[pageNumber:pageNumber+9]   
         return [len(new_data),sliced_data]
 
 api.add_resource(category,"/category")

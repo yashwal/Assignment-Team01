@@ -1,12 +1,12 @@
 .dropdown{
-  height: 3%;
-  width:7%;
+  height: 25px;
+  width:125px;
   margin-left: 10px;
-  background-color:#e9e9e9;
+  color:#FFFBF5;
   border: none;
   color:black;
   cursor: pointer;
-  text-align: center;
+  text-align-last: center;
 }
 
 .grid {
@@ -38,16 +38,14 @@ div > div{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: left;
   padding: 0% 25% 0% 28%;
-  /* color: #e9e9e9; */
 }
 
 .price{
   text-align: left;
   font-size: 24px;
-  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
   font-family: 'fantasy','copperplate';
   padding: 0% 25% 0% 28%;
-  color:#4e56f5da;
+  color:#674188;
   
 }
 
@@ -59,8 +57,8 @@ div > div{
 }
 
 .image:hover{
-  box-shadow: rgba(0, 0, 255, 0.15) 0px 54px 55px, rgba(0, 0, 255, 0.15) 0px -12px 30px, rgba(0, 0, 255, 0.15) 0px 4px 6px, rgba(0, 0, 255, 0.15) 0px 12px 13px, rgba(0, 0, 255, 0.15) 0px -3px 5px;
-  transform: scale(1.2,1.1);
+  box-shadow: rgba(25, 0, 255, 0.12) 0px 54px 55px, rgba(25, 0, 255, 0.12) 0px -12px 30px, rgba(25, 0, 255, 0.12) 0px 4px 6px, rgba(25, 0, 255, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transform: scale(1.15);
   border-radius: 5%;
   transition:.5s;
 }
@@ -78,13 +76,9 @@ div > div{
   width: 100%;
 }
 
-#sort{
-  background-color: #e9e9e9;
-  margin: 10px 0px 10px 90%;
-}
-
 .sub-header{
-  background-color: #abcdef;
-  margin: 0px 7.5px 0px 7.5px;
+  background-color: #C3ACD0;
+  margin: 10px 7.5px 0px 7.5px;
   top:8.25rem;
+  z-index: 1;
 }

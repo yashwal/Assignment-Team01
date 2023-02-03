@@ -32,7 +32,7 @@ function sortedView(sortKey){
         prod_container.innerHTML = '';
         if(data.length==0){
           prod_container.innerHTML+= `</div>
-          <img src="iamge.jpg" width="1100" height="700" class="center">
+          <img src="error.png" width="1100" height="700" class="center">
           </a>
           </div>`
         }
@@ -163,7 +163,11 @@ function sortedView(sortKey){
 window.onload=function reload(){
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+  
   var prod_query =urlParams.get('q');
+  if(prod_query==""){
+    var prod_query='*';
+  }
   var catLevel1 =urlParams.get('cat1');
   var catLevel2 =urlParams.get('cat2');
   var pageNumber = urlParams.get('page')
@@ -178,6 +182,8 @@ window.onload=function reload(){
   }
 
   if (prod_query!=null){
+    document.getElementById('loading').style.display='block';
+    setTimeout(()=>{
     fetch(`http://127.0.0.1:7002/product_query?q=${prod_query}&page=${pageNumber}&sort=${sortKey}`,{
     method : 'GET',
     mode :'cors',
@@ -195,20 +201,22 @@ window.onload=function reload(){
       var data = data[1];
       var prod_container=document.getElementById("outer-div");
       prod_container.innerHTML = '';
-      if(data.length==0){
-        prod_container.innerHTML+= `</div>
-        <img src="iamge.jpg" width="1100" height="700" class="center">
-        </a>
-        </div>`
-      }
+      // if(data.length==0){
+      //   prod_container.innerHTML+= `</div>
+      //   <img src="error.jpg" width="1100" height="700" class="center">
+      //   </a>
+      //   </div>`
+      // }
       for( let i = 0; i < data.length; i++){
-          prod_container.innerHTML+=`<div class="column" id="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
-          <img class="image" src="${data[i]['imageUrl'][0]}">
-          <p class="image_text" >${data[i]['title']}</p>
-          <p class="price">$${data[i]['price']}</p>
-          </a>
-      </div>`
+        prod_container.innerHTML+=`<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
+        <img class="image" src="${data[i]['imageUrl'][0]}">
+        <p class="image_text">${data[i]['title']}</p>
+        <p class="price">$ ${data[i]['price']}</p>
+        </a>
+    </div>`
       }
+      document.getElementById('loading').style.display='none';
+      document.getElementById('outer-div').style.display='grid';
       pageNumber++;
       var pageDisplay = ""
       var footer_container = document.getElementById("footer-div");
@@ -231,15 +239,16 @@ window.onload=function reload(){
       else{
         pageDisplay = ``;
         prod_container.innerHTML+= `</div>
-        <img src="iamge.jpg" width="1000" height="650" class="center">
-        </a>
-        </div>`;
+        <img src="error.jpg" width="1000" height="650" class="center">
+        </div>`
         footer_container.innerHTML = ` <ul>
       <li class="return-home" onclick="home()">Return to Home</li></ul>`
       }
-  });
+  });},300)
   }
     else if (catLevel1!=null ){
+      document.getElementById('loading').style.display='block';
+      setTimeout(()=>{
       fetch(`http://127.0.0.1:7002/category?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`,{
       method : 'GET',
       mode :'cors',
@@ -253,7 +262,6 @@ window.onload=function reload(){
     }).then(response => response.json()).then(data =>{
       var pages = data[0]
         var pageTotal = Math.ceil(pages/9);
-        // console.log(data[0])
         var data = data[1];
         var prod_container=document.getElementById("outer-div");
         prod_container.innerHTML = '';
@@ -265,6 +273,8 @@ window.onload=function reload(){
             </a>
         </div>`
         }
+        document.getElementById('loading').style.display='none';
+        document.getElementById('outer-div').style.display='grid';
         pageNumber++;
         var pageDisplay = ""
         var footer_container = document.getElementById("footer-div");
@@ -287,16 +297,17 @@ window.onload=function reload(){
         else{
           pageDisplay = ``;
           prod_container.innerHTML+= `</div>
-        <img src="iamge.jpg" width="1000" height="650" class="center">
-        </a>
-        </div>`;
+          <img src="error.jpg" width="1000" height="650" class="center">
+          </div>`
           footer_container.innerHTML = ` <ul>
         <li class="return-home" onclick="home()">Return to Home</li></ul>`
         }
-    });
+    });},300)
   }
     else {
-      fetch(`http://127.0.0.1:7002/product_query?q=*&page=${pageNumber}&sort=${sortKey}`,{
+    document.getElementById('loading').style.display='block';
+    setTimeout(()=>{
+    fetch(`http://127.0.0.1:7002/product_query?q=*&page=${pageNumber}&sort=${sortKey}`,{
     method : 'GET',
     mode :'cors',
     headers:{
@@ -320,6 +331,8 @@ window.onload=function reload(){
           </a>
       </div>`
       }
+      document.getElementById('loading').style.display='none';
+      document.getElementById('outer-div').style.display='grid';
       pageNumber++;
       var pageDisplay = ""
       var footer_container = document.getElementById("footer-div");
@@ -342,14 +355,12 @@ window.onload=function reload(){
       else{
         pageDisplay = ``;
         prod_container.innerHTML+= `</div>
-        <img src="iamge.jpg" width="1000" height="650" class="center">
-        </a>
+        <img src="error.jpg" width="1000" height="650" class="center">
         </div>`
         footer_container.innerHTML = ` <ul>
       <li class="return_home" onclick="home()">Return to Home</li>
       </ul>`
       }
-  });
+  });},300)
   }
 }
-

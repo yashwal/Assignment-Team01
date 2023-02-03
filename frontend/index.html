@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="header.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <html lang="en">
+<script src="category.js"></script> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,51 +23,7 @@
           </form></div>
       </div>
 
-    <div class="header-row">   
-        <div class="right-menu">
-        <button class="button" id="cat2" onclick="getCategory('0',value)" value="men">Men</button>
-            <div class="dropdown-menu">
-                <ul>
-                <li onclick="getCategory('0',`LabelsWeLove`)" class="hover-button" value="LabelsWeLove">Labels We Love</li>
-                <li onclick="getCategory('0',`Suiting`)" class="hover-button">Suiting</li>
-                <li onclick="getCategory('0',`ClearanceMen`)" class="hover-button">Clearance Men</li>
-                <li onclick="getCategory('0',`UnderwearLounge`)" class="hover-button">Underwear & Lounge</li>
-                <li onclick="getCategory('0',`NewArrivals`)" class="hover-button">New Arrivals</li>
-                <li onclick="getCategory('0',`ExpressxNBA`)" class="hover-button">Express X NBA</li>
-                <li onclick="getCategory('0',`Pants`)" class="hover-button">Pants</li>
-                <li onclick="getCategory('0',`Accessories`)" class="hover-button">Accessories</li>
-                <li onclick="getCategory('0',`Tops`)" class="hover-button">Tops</li>
-                <li onclick="getCategory('0',`AccessoriesShoes`)" class="hover-button">Accessories & Shoes</li>
-                <li onclick="getCategory('0',`Outerwear`)" class="hover-button">Outerwear</li>
-                <li onclick="getCategory('0',`Others`)" class="hover-button">Others</li>
-                </ul>
-            </div>
-        </div>
-        <div class="right-menu">
-        <button class="button" id="cat2" onclick="getCategory('1',value)" value="women">Women</button>
-        <div class="dropdown-menu">
-            <ul>
-                <li onclick="getCategory('1',`LabelsWeLove`)" class="hover-button">Labels We Love</li>
-                <li onclick="getCategory('1',`Dresses`)" class="hover-button">Dresses</li>
-                <li onclick="getCategory('1',`Work`)" class="hover-button">Work</li>
-                <li onclick="getCategory('1',`Jewelry`)" class="hover-button">Jewelry</li>
-                <li onclick="getCategory('1',`NewArrivals`)" class="hover-button">New Arrivals</li>
-                <li onclick="getCategory('1',`SweatersCardigans`)" class="hover-button">Sweaters and Cardigan</li>
-                <li onclick="getCategory('1',`PetiteClothing`)" class="hover-button">Petite Clothing</li>
-                <li onclick="getCategory('1',`Accessories`)" class="hover-button">Accessories</li>
-                <li onclick="getCategory('1',`JacketsCoats`)" class="hover-button">Jacktes & Coats</li>
-                <li onclick="getCategory('1',`Bottoms`)" class="hover-button">Bottoms</li>
-                <li onclick="getCategory('1',`Tops`)" class="hover-button">Tops</li>
-                <li onclick="getCategory('1',`ClearanceWomen`)" class="hover-button">Clearance Women</li>
-                <li onclick="getCategory('1',`AccessoriesShoes`)" class="hover-button">Accessories & Shoes</li>
-                <li onclick="getCategory('1',`Jeans`)" class="hover-button">Jeans</li>
-                <li onclick="getCategory('1',`Others`)" class="hover-button">Others</li>
-            </ul>
-        </div>
-        </div>
-        <div class="right-menu">
-        <button class="button" id="exp" onclick="getCategory('2',`Others`)">Gift Cards</button>
-        </div></div>
+    <div class="header-row" id="dropdownheader">  
     </div>
 </div>
 <script src="header.js"></script>

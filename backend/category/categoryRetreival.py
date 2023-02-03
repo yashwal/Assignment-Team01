@@ -20,14 +20,15 @@ def categoryLevel():
     res=connectDB()
     conn=res[0]
     cur=res[1]
-    cur.execute("select distinct cat_label from category where parent_id='-1'")
+    cur.execute("select distinct cat_label,cat_id from category where parent_id='-1'")
     data=cur.fetchall()
     new_data = []
     cat1=[]
     men=[]
     women=[]
+    
     for catlevel1 in data:
-        cat1.append(catlevel1[0])
+        cat1.append([catlevel1[0],catlevel1[1]])
 
     cur.execute("select distinct cat_label from category where parent_id='0'")
     data=cur.fetchall()

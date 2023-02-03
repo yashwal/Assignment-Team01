@@ -32,6 +32,12 @@ class fetchProducts(Resource):
         return data
 api.add_resource(fetchProducts,"/product/<string:productId>")
 
+class categoryTree(Resource):
+    @cache.cached(timeout=30, query_string=True)
+    def get(self):
+        data=categoryLevel()
+        return data
+api.add_resource(categoryTree,"/categoryTree")
 
 
 

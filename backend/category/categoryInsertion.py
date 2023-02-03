@@ -17,7 +17,7 @@ def categoryTable(data):
             count += 1
     
     for i in mapp:
-        cur.execute("INSERT INTO category values(%s,%s,%s)",(mapp[i],i,0))
+        cur.execute("INSERT INTO category values(%s,%s,%s)",(mapp[i],i,-1))
         conn.commit()
     
     for i in data:

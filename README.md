@@ -51,7 +51,7 @@ All the API are restful and are made using flask_resftul module.
 
 <br>
 <br>
-    
+<br>
 
 
 # add this file to unbxd training/Assignment-Team01 folder

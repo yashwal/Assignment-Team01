@@ -17,7 +17,6 @@
   
   .header-row{
   background-color: #674188;
-  margin: 0px 7.5px 0px 7.5px;
   }
 
   .active{
@@ -32,13 +31,13 @@
   }
   .searchbutton{
     position: absolute;
-    right: 30px;
+    right: 20px;
     height: 35px;
     width: 35px;
     margin-top: 4.25px;
     border-radius: 50%;
     color: #674188;
-    background-color: #FFFBF5;
+    background-color: #ffffff;
     
   }
   
@@ -49,7 +48,7 @@
     float:right;
     border-radius: 20px;
     color: #674188;
-    background-color: #FFFBF5;
+    background-color: #ffffff;
     font-size: 18px;
     text-indent: 10px;
     
@@ -101,7 +100,7 @@
 
   .dropdown-menu li:hover{
     background-color:#674188;
-    color:#FFFBF5;
+    color:#ffffff;
     transform: scale(1.3);
     z-index: 3;
   }

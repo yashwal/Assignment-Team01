@@ -15,3 +15,38 @@ def searchProducts(catLevel1,catLevel2):
     cur.close()
     conn.close()
     return data
+
+def categoryLevel():
+    res=connectDB()
+    conn=res[0]
+    cur=res[1]
+    cur.execute("select distinct cat_label from category where parent_id='-1'")
+    data=cur.fetchall()
+    new_data = []
+    cat1=[]
+    men=[]
+    women=[]
+    for catlevel1 in data:
+        cat1.append(catlevel1[0])
+
+    cur.execute("select distinct cat_label from category where parent_id='0'")
+    data=cur.fetchall()
+    for catlevel2 in data:
+        men.append(catlevel2[0])
+    
+    cur.execute("select distinct cat_label from category where parent_id='1'")
+    data=cur.fetchall()
+    for catlevel2 in data:
+        women.append(catlevel2[0])
+    new_data.append(cat1)
+    new_data.append({"0":men})
+    new_data.append({"1":women})
+    cur.close()
+    conn.close()
+    return new_data
+
+
+
+# new_data = []
+#         for product in data:
+#             new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})

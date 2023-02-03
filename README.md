@@ -14,46 +14,55 @@ All the API are restful and are made using flask_resftul module.
     JSON
     }
 - input should be out.json file
+<br>
+<br>
+- Fetch Product:<br>
+    GET /product/<string:productId> HTTP/1.1<br>
+    Host: localhost<br>
+<br>
+<br>
+- Category Tree<br>
+    GET /categoryTree HTTP/1.1<br>
+    Host: localhost<br>
+<br>
+<br>
+- Product Query<br>
+    GET /product_query HTTP/1.1<br>
+    Host: localhost<br>
+    Arguments:  <br>
+                'q', default="", type=str<br>
+                'page', default=1, type=int<br>
+                'sort', default="ftrd", type=str<br>
+<br>
+<br>
+- Product Sort<br>
+    GET /product_query/<string:searchQuery>/<string:sortKey>/<int:pageNumber> HTTP/1.1<br>
+    Host: localhost<br>
+<br>
+<br>
+- Category Sort<br>
+    GET /categorySort HTTP/1.1<br>
+    Host: localhost<br>
+    Arguments:<br>
+                'cat1', default="", type=str<br>
+                'cat2', default="", type=str<br>
+                'sort', default="ftrd", type =str<br>
+                'page', default=1, type=int<br>
 
-- Fetch Product:
-    GET /product/<string:productId> HTTP/1.1
-    Host: localhost
-
-- Category Tree
-    GET /categoryTree HTTP/1.1
-    Host: localhost
-
-- Product Query
-    GET /product_query HTTP/1.1
-    Host: localhost
-    Arguments:  'q', default="", type=str
-                'page', default=1, type=int
-                'sort', default="ftrd", type=str
-
-- Product Sort
-    GET /product_query/<string:searchQuery>/<string:sortKey>/<int:pageNumber> HTTP/1.1
-    Host: localhost
-    
-- Category Sort
-    GET /categorySort HTTP/1.1
-    Host: localhost
-    Arguments:
-                'cat1', default="", type=str
-                'cat2', default="", type=str
-                'sort', default="ftrd", type =str
-                'page', default=1, type=int
+<br>
+<br>
     
 
 
 # add this file to unbxd training/Assignment-Team01 folder
-.env
-CACHE_TYPE=redis
-CACHE_REDIS_HOST=redis
-CACHE_REDIS_PORT=6379
-CACHE_REDIS_DB=0
-CACHE_REDIS_URL=redis://redis:6379/0
-CACHE_DEFAULT_TIMEOUT=500
-
+.env<br>
+CACHE_TYPE=redis<br>
+CACHE_REDIS_HOST=redis<br>
+CACHE_REDIS_PORT=6379<br>
+CACHE_REDIS_DB=0<br>
+CACHE_REDIS_URL=redis://redis:6379/0<br>
+CACHE_DEFAULT_TIMEOUT=500<br>
+<br>
 # Docker Installation Instruction
 To run backend:
 - Go to Assignment folder

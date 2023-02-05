@@ -1,5 +1,5 @@
 window.onload = function(){
-    fetch(`http://127.0.0.1:7002/categoryTree`,{
+fetch(`http://127.0.0.1:7002/categoryTree`,{
     method : 'GET',
     mode :'cors',
     headers:{
@@ -21,7 +21,7 @@ window.onload = function(){
       var value = cat1[i][0];
       if (catValue!='exp'){
       dataElement = data[parseInt(catId)+1];
-      var elementArr = dataElement[catId].sort();
+      var elementArr = dataElement[catId];
       var tempo = ``;
       for( let j = 0;j < elementArr.length; j++){
         var valueName = elementArr[j].replace(/([A-Z])/g, ' $1').trim();
@@ -40,33 +40,4 @@ window.onload = function(){
       <div class="dropdown-menu">` + tempo;
       }
     }
-  });
-    const queryString = window.location.search;
-    
-    const urlParams = new URLSearchParams(queryString);
-    var uniqueId =urlParams.get('uid')
-   
-        fetch(`http://127.0.0.1:7002/product/${uniqueId}`,{
-        method : 'GET',
-        mode :'cors',
-        headers:{
-        'Access-Control-Allow-Origin':'*',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json;charset=utf-8',
-        
-        }
-  }).then(response => response.json()).then(data =>{
-      var prod_container=document.getElementById("row");
-          prod_container.innerHTML+=`<div class="column1">
-              <img class="image" src="${data['image_url']}">
-          </div>
-          <div class="column2">
-              <p class="image_title">${data['title']}</p>
-              <p class="price">$ ${data['price']}</p>
-              <p class="image_body">${data['description']}</p>
-          </div>`
-  }).catch(err=>{
-    console.log(err);
-  });
-  }
-  
+  });}

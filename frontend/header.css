@@ -64,6 +64,7 @@
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
+    text-transform: capitalize;
   }
 
   .searchbutton:hover{
@@ -125,4 +126,5 @@
     padding-top: 5px;
     border: 1px solid gray;
     z-index: 2;
+    cursor: pointer;
   }

@@ -66,7 +66,7 @@ class productQuery(Resource):
         if sortKey=='ftrd':
             response = searchProduct(searchQuery,pageNumber,"")
         else:
-            response=searchSorted(searchQuery,sortKey,pageNumber)
+            response=searchProduct(searchQuery,pageNumber,sortKey)
         #response=searchProduct(searchQuery,pageNumber,sortKey)
         data = json.loads(response.content)
         products = data['response']['products']
@@ -102,6 +102,7 @@ class category(Resource):
 
 api.add_resource(category,"/category")
 
+#searches fro product in unbxd search api and returns the product in sorted manner with pagination.
 class productSort(Resource):
     @cache.cached(timeout=30, query_string=True)
     def get(self,searchQuery,sortKey,pageNumber):
@@ -109,7 +110,7 @@ class productSort(Resource):
         if sortKey=='ftrd':
             response = searchProduct(searchQuery,pageNumber,"")
         else:
-            response=searchSorted(searchQuery,sortKey,pageNumber)
+            response=searchProduct(searchQuery,pageNumber,sortKey)
         data = json.loads(response.content)
         products = data['response']['products']
         productsNumber = data['response']['numberOfProducts']
@@ -117,6 +118,8 @@ class productSort(Resource):
 
 api.add_resource(productSort,"/product_query/<string:searchQuery>/<string:sortKey>/<int:pageNumber>")
 
+
+#returns the products belonging certain category in the given page and given sorting parameter
 class categorySort(Resource):
     @cache.cached(timeout=30, query_string=True)
     def get(self): #page number should also be an argument

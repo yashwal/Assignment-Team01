@@ -6,11 +6,11 @@ from flask_restful import Api,Resource
 from flask_cors import CORS
 from flask_caching import Cache
 
-from category.categoryInsertion import *
-from category.categoryRetreival import *
-from product.productInsertion import *
-from product.productRetreival import *
-from search.searchapi import *
+from model.category.categoryInsertion import *
+from model.category.categoryRetreival import *
+from model.product.productInsertion import *
+from model.product.productRetreival import *
+from model.search.searchapi import *
 import math
 import json
 

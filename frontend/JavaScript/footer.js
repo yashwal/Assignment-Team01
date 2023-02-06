@@ -36,10 +36,15 @@ function nextPage(){
     var sortKey = urlParams.get('sort');
     catLevel1 = urlParams.get('cat1');
     catLevel2 = urlParams.get('cat2');
-    console.log(sortKey);
+    // console.log(sortKey);
     if ((sortKey==null)||(sortKey=='null'||sortKey=="")){
         sortKey = fetchSortKey();
     }
+    if (sortKey==""){
+        sortKey = "ftrd";
+        prod_query = '*';
+    }
+    console.log(sortKey);
     var pageNumber = document.getElementById('pageNumber').value-1;
     pageNumber += 1;
     if ((pageNumber >= -1000)&&(sortKey!=null)&&(prod_query!=null)){

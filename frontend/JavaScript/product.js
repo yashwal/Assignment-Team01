@@ -42,10 +42,15 @@ window.onload = function(){
     }
   });
     const queryString = window.location.search;
-    
     const urlParams = new URLSearchParams(queryString);
-    var uniqueId =urlParams.get('uid')
-   
+    var uniqueId =urlParams.get('uid');
+    var prod_query =urlParams.get('q');
+
+  if(prod_query==""){
+    var prod_query='*';
+  }
+
+    if(uniqueId!=null){
         fetch(`http://127.0.0.1:7002/product/${uniqueId}`,{
         method : 'GET',
         mode :'cors',
@@ -67,6 +72,9 @@ window.onload = function(){
           </div>`
   }).catch(err=>{
     console.log(err);
-  });
+  });}
+  else{
+    window.parent.location=`index.html?q=${prod_query}&page=1`
+  }
   }
   

@@ -31,7 +31,7 @@ function sortedView(sortKey){
         prod_container.innerHTML = '';
         if(data.length==0){
           prod_container.innerHTML+= `</div>
-          <img src="error.png" width="1100" height="700" class="center">
+          <img src="Images/error.png" width="1100" height="700" class="center">
           </a>
           </div>`
         }
@@ -131,7 +131,7 @@ function sortedView(sortKey){
   }
 
     else {
-      fetch(`http://127.0.0.1:7002/product_query/*/${sortKey}`,{
+      fetch(`http://127.0.0.1:7002/product_query/*/${sortKey}/${pageNumber}`,{
       method : 'GET',
       mode :'cors',
       headers:{
@@ -280,7 +280,7 @@ window.onload=function reload(){
       else{
         pageDisplay = ``;
         prod_container.innerHTML+= `</div>
-        <img src="error.jpg" width="1000" height="650" class="center">
+        <img src="Images/error.jpg" width="1000" height="650" class="center">
         </div>`
         footer_container.innerHTML = ` <ul>
       <li class="return-home" onclick="home()">Return to Home</li></ul>`
@@ -302,7 +302,7 @@ window.onload=function reload(){
       }
       
     }).then(response => response.json()).then(data =>{
-      var pages = data[0]
+        var pages = data[0]
         var pageTotal = Math.ceil(pages/9);
         var data = data[1];
         var prod_container=document.getElementById("outer-div");
@@ -339,7 +339,7 @@ window.onload=function reload(){
         else{
           pageDisplay = ``;
           prod_container.innerHTML+= `</div>
-          <img src="error.jpg" width="1000" height="650" class="center">
+          <img src="Images/error.jpg" width="1000" height="650" class="center">
           </div>`
           footer_container.innerHTML = ` <ul>
         <li class="return-home" onclick="home()">Return to Home</li></ul>`
@@ -347,6 +347,9 @@ window.onload=function reload(){
     });},300)
   }
     else {
+      if (pageNumber==""){
+        pageNumber = 1;
+      }
     document.getElementById('loading').style.display='block';
     setTimeout(()=>{
     fetch(`http://127.0.0.1:7002/product_query?q=*&page=${pageNumber}&sort=${sortKey}`,{
@@ -360,7 +363,8 @@ window.onload=function reload(){
     }
     
   }).then(response => response.json()).then(data =>{
-      var pageTotal = Math.ceil(data[0]/9);
+    var pages = data[0]
+      var pageTotal = Math.ceil(pages/9);
       console.log(pageTotal)
       var data = data[1];
       var prod_container=document.getElementById("outer-div");
@@ -397,7 +401,7 @@ window.onload=function reload(){
       else{
         pageDisplay = ``;
         prod_container.innerHTML+= `</div>
-        <img src="error.jpg" width="1000" height="650" class="center">
+        <img src="Images/error.jpg" width="1000" height="650" class="center">
         </div>`
         footer_container.innerHTML = ` <ul>
       <li class="return_home" onclick="home()">Return to Home</li>

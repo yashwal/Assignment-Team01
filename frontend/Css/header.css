@@ -29,6 +29,7 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
+
   .searchbutton{
     position: absolute;
     right: 20px;
@@ -51,7 +52,7 @@
     background-color: #ffffff;
     font-size: 18px;
     text-indent: 10px;
-    
+    font-family: 'sans-serif','verdana';
   }
 
   .button{
@@ -127,4 +128,5 @@
     border: 1px solid gray;
     z-index: 2;
     cursor: pointer;
+    font-family: 'sans-serif','verdana';
   }

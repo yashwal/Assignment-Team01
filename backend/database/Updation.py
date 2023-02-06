@@ -2,13 +2,12 @@ import sys
 sys.path.append('..')
 from database.Connection import *
 
-#future work
 
 def checkProductID(productId):
     res=connectDB()
     conn=res[0]
     cur=res[1]
-    cur.execute("select * from product where product_id=%s",(productId,))
+    cur.execute("select * from product02 where product_id=%s",(productId,))
     data= cur.fetchone()
     cur.close()
     conn.close()

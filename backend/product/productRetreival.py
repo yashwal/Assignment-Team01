@@ -4,12 +4,6 @@ from database.Connection import *
 import requests,json
 
 def getProducts(productId):
-    ''''
-    The databse is searched for the given productId, if found, will return all the product details.
-    If not found, a search request is sent to unbxd search api and the required details are fetched. 
-    
-    '''
-    
     res=connectDB()
     conn=res[0]
     cur=res[1]
@@ -29,7 +23,6 @@ def getProducts(productId):
     }
     cur.close()
     conn.close()
-    
     return{
         "product_id":productId,
         "title":data[1],

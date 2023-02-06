@@ -2,15 +2,11 @@ import sys
 sys.path.append('..')
 from database.Connection import *
 
-
+#creates a table named product which has all the product details
+#A JSON file is given as input
+#the function connects to the database and adds data to the product table
 
 def productTable(data):
-    '''
-    creates a table named product which has all the product details
-    A JSON file is given as input
-    the function connects to the database and adds data to the product table
-    '''
-
     res=connectDB()
     conn=res[0]
     cur=res[1]
@@ -34,7 +30,7 @@ def productTable(data):
             print("0")
         image_url=str(i['productImage'])
         price=str(i['price'])
-        
+        #cur.execute("INSERT INTO category values(%s,%s,%s)",(count,catLevel2,str(parent_id),))
         cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,count))
         count+=1
         conn.commit()

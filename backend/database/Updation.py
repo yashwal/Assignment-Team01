@@ -2,6 +2,7 @@ import sys
 sys.path.append('..')
 from database.Connection import *
 
+#future work
 
 def checkProductID(productId):
     res=connectDB()

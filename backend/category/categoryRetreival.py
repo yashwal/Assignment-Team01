@@ -4,6 +4,9 @@ from database.Connection import *
 import requests,json
 
 def searchProducts(catLevel1,catLevel2):
+    '''
+    For given catlevel1 and catlevel2 parameters, the functions fetches the product details from the category and product database.
+    '''
     res=connectDB()
     conn=res[0]
     cur=res[1]
@@ -17,6 +20,10 @@ def searchProducts(catLevel1,catLevel2):
     return data
 
 def categoryLevel():
+    '''
+    Access the category table and creates the category tree in the form of list of lists.
+    the first list contains all categorylevel1 items and second list contains all categorylevel2 items.
+    '''
     res=connectDB()
     conn=res[0]
     cur=res[1]
@@ -46,8 +53,3 @@ def categoryLevel():
     conn.close()
     return new_data
 
-
-
-# new_data = []
-#         for product in data:
-#             new_data.append({"uniqueId":product[0], "Title":product[1], "Description":product[2],"Img_URL":product[3],"price":product[4]})

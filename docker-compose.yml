@@ -3,7 +3,7 @@ services:
   api:
     container_name: flask-container
     build: ./backend
-    entrypoint: python main.py
+    entrypoint: python controller/main.py
     env_file:
       - .env
     ports:

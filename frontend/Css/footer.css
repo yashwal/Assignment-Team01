@@ -29,6 +29,7 @@
     border: none;
     cursor: pointer;
     font-weight:1000;
+    font-family: 'sans-serif','verdana';;
 }
 
 .text-footer:hover{
@@ -43,6 +44,7 @@
     margin: 15px 15px 15px 50px;
     font-weight: 200;
     font-size: 16px;
+    font-family: 'sans-serif','verdana';;
 }
 
 .return-home{

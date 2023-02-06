@@ -344,6 +344,27 @@ window.onload=function reload(){
           footer_container.innerHTML = ` <ul>
         <li class="return-home" onclick="home()">Return to Home</li></ul>`
         }
+
+        if ((catLevel2=='men')||(catLevel2=='women')){
+          catLevel2 = ((catLevel2.charAt(0)).toUpperCase()+catLevel2.slice(1));
+          var currentPage_container = document.getElementById("current_page");
+          currentPage_container.innerHTML = `Showing Products : ${catLevel2}`;
+        }
+        else{
+          if (catLevel1=='0'){
+            catLevel1 = "Men"
+          }
+          else if(catLevel1=='1'){
+            catLevel1 = "Women"
+          }
+          else{
+            catLevel1 = "Gift Cards"
+          }
+          var currentPage_container = document.getElementById("current_page");
+          currentPage_container.innerHTML = `Showing Products : ${catLevel1} &rarr; ${catLevel2.replace(/([A-Z])/g, ' $1').trim()}`;
+      }
+      document.getElementById('current_page').style.display='inline';
+
     });},300)
   }
     else {

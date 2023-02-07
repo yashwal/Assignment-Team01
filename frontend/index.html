@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="Css/header.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <html lang="en">
-<script src=" JavaScript/category.js"></script> 
+<script src=" JavaScript/footer.js"></script>
+<script type="module" src="./JavaScript/index.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,35 +16,37 @@
 <div>
     <div class="header-row">
         <div class="header-col1 left">
-        <a class="active"><img src="Images/logo.png" width="150" height="90" onclick="home()"></a>
+            <a class="active"><img src="Images/logo.png" width="150" height="90" onclick="home()"></a>
         </div>
         <div class="header-col1 right">
-        <form id="form" method="GET"> 
-            <input type="text" id="query" name="q" class="searchbar" placeholder="What are you looking for?">
-            <button type="submit" class="searchbutton fa fa-search" onclick="getQuery()"></button>
-          </form></div>
-      </div>
+            <form id="form" method="GET">
+                <input type="text" id="query" name="q" class="searchbar" placeholder="What are you looking for?">
+                <button type="submit" class="searchbutton fa fa-search" onclick="getQuery()"></button>
+            </form>
+        </div>
+    </div>
 
-    <div class="header-row" id="dropdownheader">  
+    <div class="header-row" id="dropdownheader">
     </div>
 </div>
 <script src=" JavaScript/header.js"></script>
+
 <body>
-    
-<div class="sub-header">
-    <div class="left-menu">
-        <button class="button" id="sort">Filter &#9662;</button>
-        <div class="dropdown-menu">
-            <ul>
-                <li onclick="sortedView(``)" class="hover-button">Featured</li>
-                <li onclick="sortedView(`price asc`)" class="hover-button">Price Low - High</li>
-                <li onclick="sortedView(`price desc`)" class="hover-button">Price High - Low</li>
-            </ul>
+
+    <div class="sub-header">
+        <div class="left-menu">
+            <button class="button" id="sort">Filter &#9662;</button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li id="feature_li" value=" " class="hover-button">Featured</li>
+                    <li id="priceasc_li" value="price asc" class="hover-button">Price Low - High</li>
+                    <li id="pricedesc_li" value="price desc" class="hover-button">Price High - Low</li>
+                </ul>
+            </div>
+        </div>
+        <div class="title" id="current_page" style="display: none">
         </div>
     </div>
-    <div class="title" id="current_page" style="display: none">
-    </div>
-</div>
     <div class="middle" id="loading">
         <div class="bar bar1"></div>
         <div class="bar bar2"></div>
@@ -52,15 +56,14 @@
         <div class="bar bar6"></div>
         <div class="bar bar7"></div>
         <div class="bar bar8"></div>
-      </div>
-    
-<div id ="outer-div" style="display: none" class="grid" >    
-<script src=" JavaScript/index.js"></script>
-</div>
+    </div>
+
+    <div id="outer-div" style="display: none" class="grid">
+    </div>
 </body>
 <footer class="foot">
     <section id="footer-div" class="footer-section">
-</section>
-<script src=" JavaScript/footer.js"></script>
+    </section>
 </footer>
-</html> 
+
+</html>

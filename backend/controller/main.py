@@ -9,8 +9,11 @@ from model.product.productRetreival import *
 from model.search.searchapi import *
 from app import api,cache,host
 
-#product_id is given as input , returns the product details
+
 class fetchProducts(Resource):
+    '''
+    product_id is given as input , returns the product details
+    '''
     @cache.cached(timeout=30, query_string=True)
     def get(self,productId):
         #productId = request.args.get('uid', default="", type=str)
@@ -20,6 +23,9 @@ api.add_resource(fetchProducts,"/product/<string:productId>")
 
 
 class categoryTree(Resource):
+    ''''
+    creates category tree for category level 1 and level 2. Returns a JSON file with category heirarchy
+    '''
     @cache.cached(timeout=30, query_string=True)
     def get(self):
         data=categoryLevel()
@@ -28,8 +34,10 @@ api.add_resource(categoryTree,"/categoryTree")
 
 
 
-#upload the given data in the json file to postgreSQL table
 class upload(Resource):
+    '''
+    upload the given data in the json file to postgreSQL table
+    '''
     def post(self):
         data=request.json
         categoryTable(data)
@@ -38,8 +46,11 @@ class upload(Resource):
 api.add_resource(upload,"/upload")
 
 
-#fetches ten products from unbxd search api and return it
+
 class productQuery(Resource):
+    '''
+    fetches ten products from unbxd search api and return it
+    '''
     @cache.cached(timeout=30, query_string=True)
     def get(self):
         searchQuery = request.args.get('q', default="", type=str)
@@ -53,8 +64,11 @@ class productQuery(Resource):
 api.add_resource(productQuery,"/product_query")
 
 
-#fetch products from certain category
+
 class category(Resource):
+    '''
+    fetch products for the given category
+    '''
     @cache.cached(timeout=30, query_string=True)
     def get(self): #page number should also be an argument
         catLevel1 = request.args.get('cat1', default="", type=str)

@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
-from model.database.Connection import *
-import requests,json
+from DAO.Connection import *
+
 
 def searchProducts(catLevel1,catLevel2,sortKey,pageNumber):
     '''

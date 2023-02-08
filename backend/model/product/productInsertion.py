@@ -1,6 +1,6 @@
 import sys
 sys.path.append('..')
-from model.database.Connection import *
+from DAO.Connection import *
 
 
 def productTable(data):

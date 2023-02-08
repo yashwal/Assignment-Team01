@@ -41,7 +41,6 @@ function nextPage(){
     }
     if (sortKey===""){
         sortKey = "ftrd";
-        prod_query = '*';
     }
     let pageNumber = document.getElementById('pageNumber').value-1;
     pageNumber += 1;

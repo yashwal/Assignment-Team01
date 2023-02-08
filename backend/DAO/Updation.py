@@ -1,8 +1,8 @@
 import sys
 sys.path.append('..')
-from model.database.Connection import *
+from DAO.Connection import *
 
-#future work
+#Future work
 
 def checkProductID(productId):
     res=connectDB()

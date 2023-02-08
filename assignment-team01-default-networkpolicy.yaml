@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: assignment-team01-default
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/assignment-team01-default: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/assignment-team01-default: "true"

@@ -16,7 +16,6 @@ class fetchProducts(Resource):
     '''
     @cache.cached(timeout=30, query_string=True)
     def get(self,productId):
-        #productId = request.args.get('uid', default="", type=str)
         data=getProducts(productId)
         return data
 api.add_resource(fetchProducts,"/product/<string:productId>")
@@ -52,17 +51,16 @@ class productQuery(Resource):
     fetches ten products from unbxd search api and return it
     '''
     @cache.cached(timeout=30, query_string=True)
-    def get(self):
-        searchQuery = request.args.get('q', default="", type=str)
-        pageNumber = request.args.get('page', default=1, type=int)
-        sortKey = request.args.get('sort', default="ftrd", type=str)
+    def get(self,searchQuery,pageNumber,sortKey):        
+        # searchQuery = request.args.get('q', default="", type=str)
+        # pageNumber = request.args.get('page', default=1, type=int)
+        # sortKey = request.args.get('sort', default="ftrd", type=str)
         
         [productsNumber,products] = searchProduct(searchQuery,pageNumber,sortKey)
 
         return [products,productsNumber]
         
-api.add_resource(productQuery,"/product_query")
-
+api.add_resource(productQuery,"/product_query/<string:searchQuery>/<int:pageNumber>/<string:sortKey>")
 
 
 class category(Resource):
@@ -70,16 +68,17 @@ class category(Resource):
     fetch products for the given category
     '''
     @cache.cached(timeout=30, query_string=True)
-    def get(self): #page number should also be an argument
-        catLevel1 = request.args.get('cat1', default="", type=str)
-        catLevel2 = request.args.get('cat2', default="", type=str)
-        pageNumber = request.args.get('page', default=1, type=int)
-        sortKey = request.args.get('sort', default="ftrd", type =str)
+    def get(self,catLevel1,catLevel2,pageNumber,sortKey):
+        
+        # catLevel1 = request.args.get('cat1', default="", type=str)
+        # catLevel2 = request.args.get('cat2', default="", type=str)
+        # pageNumber = request.args.get('page', default=1, type=int)
+        # sortKey = request.args.get('sort', default="ftrd", type =str)
         
         [length,sliced_data]=searchProducts(catLevel1,catLevel2,sortKey,pageNumber)
 
         return [length,sliced_data]
-api.add_resource(category,"/category")
+api.add_resource(category,"/category/<string:catLevel1>/<string:catLevel2>/<int:pageNumber>/<string:sortKey>")
 
 if __name__=='__main__':
     host()

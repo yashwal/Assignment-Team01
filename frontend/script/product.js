@@ -29,12 +29,14 @@ window.onload = function () {
           try {
             if (data === null) throw "Unable to fetch data";
             let prod_container = document.getElementById("row");
+            let decimal = (parseFloat(data['price']).toFixed(2)).slice(-2);
+            let price = String(parseInt(data['price']));
             prod_container.innerHTML += `<div class="column1">
                 <img class="image" src="${data['image_url']}">
             </div>
             <div class="column2">
                 <p class="image_title">${data['title']}</p>
-                <p class="price">$ ${data['price']}</p>
+                <p class="price"><sup>$</sup>${price}<sup>${decimal}</sup></p>
                 <p class="image_body">${data['description']}</p>
             </div>`
           }

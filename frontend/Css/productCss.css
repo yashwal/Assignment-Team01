@@ -42,8 +42,7 @@
   }
 
   .price{
-    font-size: 32px;
-    font-style: oblique;
+    font-size: 34px;
     font-family: 'fantasy','copperplate';
     padding: 10px;
     color:#674188;
@@ -60,4 +59,11 @@
     width: auto;
     border-radius: 5%;
     border: 0.5px solid gray;
+  }
+
+  sup{
+    line-height: 0;
+    font-size: 20px;
+    vertical-align:8px;
+    padding-left:2px;
   }

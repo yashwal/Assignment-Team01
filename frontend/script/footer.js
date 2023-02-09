@@ -42,6 +42,7 @@ function nextPage(){
     if (sortKey===""){
         sortKey = "ftrd";
     }
+    
     let pageNumber = document.getElementById('pageNumber').value-1;
     pageNumber += 1;
     if ((pageNumber >= -1000)&&(sortKey!==null)&&(prod_query!==null)){

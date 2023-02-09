@@ -81,12 +81,14 @@ window.onload = function () {
                 currentPage_container.innerHTML = `Showing All The Products`;
               }
               for (let i = 0; i < data.length; i++) {
+                let decimal = (parseFloat(data[i]['price']).toFixed(2)).slice(-2);
+                let price = String(parseInt(data[i]['price']));
                 prod_container.innerHTML += `<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
-          <img class="image" src="${data[i]['imageUrl'][0]}">
-          <p class="image_text">${data[i]['title']}</p>
-          <p class="price">$ ${data[i]['price']}</p>
-          </a>
-      </div>`
+                <img class="image" src="${data[i]['imageUrl'][0]}">
+                <p class="image_text">${data[i]['title']}</p>
+                <p class="price"><sup>$</sup>${price}<sup>${decimal}</sup></p>
+                </a>
+                </div>`
               }
               document.getElementById('loading').style.display = 'none';
               document.getElementById('outer-div').style.display = 'grid';
@@ -172,12 +174,14 @@ window.onload = function () {
               let prod_container = document.getElementById("outer-div");
               prod_container.innerHTML = '';
               for (let i = 0; i < data.length; i++) {
+                let decimal = (parseFloat(data[i]['price']).toFixed(2)).slice(-2);
+                let price = String(parseInt(data[i]['price']));
                 prod_container.innerHTML += `<div class="column" name="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
               <img class="image" src="${data[i]['Img_URL']}">
               <p class="image_text">${data[i]['Title']}</p>
-              <p class="price">$ ${data[i]['price']}</p>
+              <p class="price"><sup>$</sup>${price}<sup>${decimal}</sup></p>
               </a>
-          </div>`
+            </div>`
               }
               document.getElementById('loading').style.display = 'none';
               document.getElementById('outer-div').style.display = 'grid';
@@ -283,12 +287,14 @@ window.onload = function () {
               let prod_container = document.getElementById("outer-div");
               prod_container.innerHTML = '';
               for (let i = 0; i < data.length; i++) {
+                let decimal = (parseFloat(data[i]['price']).toFixed(2)).slice(-2);
+                let price = String(parseInt(data[i]['price']));
                 prod_container.innerHTML += `<div class="column" id="uid"  onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
-          <img class="image" src="${data[i]['imageUrl'][0]}">
-          <p class="image_text">${data[i]['title']}</p>
-          <p class="price">$ ${data[i]['price']}</p>
-          </a>
-      </div>`
+                <img class="image" src="${data[i]['imageUrl'][0]}">
+                <p class="image_text">${data[i]['title']}</p>
+                <p class="price"><sup>$</sup>${price}<sup>${decimal}</sup></p>
+                </a>
+                </div>`
               }
               document.getElementById('loading').style.display = 'none';
               document.getElementById('outer-div').style.display = 'grid';

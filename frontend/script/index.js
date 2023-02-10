@@ -61,7 +61,6 @@ window.onload = function () {
         }
 
       }).then(response => {
-        console.log(response.status);
         const statusCode = response.status;
         if ((statusCode < 300) && (statusCode >= 200)) {
           response.json().then(data => {
@@ -144,11 +143,19 @@ window.onload = function () {
         else {
           ;
         }
+      }).catch(err=>{
+        let prod_container = document.getElementById("outer-div");
+            prod_container.innerHTML += `</div>
+          <img src="images/error500.png" class="error">
+          </div>`
       });
     }, 300)
   }
 
   else if (catLevel1 != null) {
+    if(catLevel1==="" || catLevel2===""){
+      window.parent.location=`500.html`
+    }
     document.getElementById('loading').style.display = 'block';
     setTimeout(() => {
       fetch(`http://127.0.0.1:7002/category/${catLevel1}/${catLevel2}?page=${pageNumber}&sort=${sortKey}`, {
@@ -163,7 +170,6 @@ window.onload = function () {
 
       }).then(response => {
         const statusCode = response.status;
-        console.log(statusCode);
         if ((statusCode < 300) && (statusCode >= 200)) {
           response.json().then(data => {
             try {
@@ -191,26 +197,26 @@ window.onload = function () {
               if ((pageNumber - 1) * 9 < pages) {
                 pageDisplay = `Showing ${(pageNumber - 2) * 9 + 1}-${(pageNumber - 1) * 9} of ${pages} products`;
                 footer_container.innerHTML = ` <ul class="page">
-          <li class="text-footer" onclick="prevPage()"> &lt; </li>
-          <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
-          <li class="text-footer" onclick="nextPage()"> &gt; </li>
-          <li class="product-text">${pageDisplay}</li></ul>`
+                <li class="text-footer" onclick="prevPage()"> &lt; </li>
+                <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
+                <li class="text-footer" onclick="nextPage()"> &gt; </li>
+                <li class="product-text">${pageDisplay}</li></ul>`
               }
               else if (((pageNumber - 2) * 9 + 1 <= pages) && ((pageNumber - 1) * 9 + 1 > pages)) {
                 pageDisplay = `Showing ${(pageNumber - 2) * 9 + 1}-${pages} of ${pages} products`;
                 footer_container.innerHTML = ` <ul class="page">
-          <li class="text-footer" onclick="prevPage()"> &lt; </li>
-          <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
-          <li class="text-footer" onclick="nextPage()"> &gt; </li>
-          <li class="product-text">${pageDisplay}</li></ul>`
+                <li class="text-footer" onclick="prevPage()"> &lt; </li>
+                <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
+                <li class="text-footer" onclick="nextPage()"> &gt; </li>
+                <li class="product-text">${pageDisplay}</li></ul>`
               }
               else {
                 pageDisplay = ``;
                 prod_container.innerHTML += `</div>
-            <img src="images/error.jpg" width="1000" height="650" class="center">
-            </div>`
+              <img src="images/error.jpg" width="1000" height="650" class="center">
+              </div>`
                 footer_container.innerHTML = ` <ul>
-          <li class="return-home" onclick="home()">Return to Home</li></ul>`
+              <li class="return-home" onclick="home()">Return to Home</li></ul>`
               }
 
               if ((catLevel2 === 'men') || (catLevel2 === 'women')) {
@@ -241,20 +247,25 @@ window.onload = function () {
         else if ((statusCode < 500) && (statusCode >= 400)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-        <img src="images/error404.png" width="1000" height="650" class="center">
+        <img src="images/error500.png" width="1000" height="650" class="error">
         </div>`
         }
 
         else if ((statusCode < 600) && (statusCode >= 500)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-        <img src="images/error500.png" width="1000" height="650" class="center">
+        <img src="images/error500.png" width="1000" height="650" class="error">
         </div>`
         }
 
         else {
           ;
         }
+      }).catch(e=>{
+        let prod_container = document.getElementById("outer-div");
+            prod_container.innerHTML += `</div>
+          <img src="images/error500.png" class="error">
+          </div>`;
       });
     }, 300)
   }
@@ -275,7 +286,6 @@ window.onload = function () {
         }
 
       }).then(response => {
-        console.log(response.status);
         const statusCode = response.status;
         if ((statusCode < 300) && (statusCode >= 200)) {
           response.json().then(data => {
@@ -350,6 +360,11 @@ window.onload = function () {
           ;
         }
 
+      }).catch(err=>{
+        let prod_container = document.getElementById("outer-div");
+            prod_container.innerHTML += `</div>
+          <img src="images/error500.png" class="error">
+          </div>`
       });
     }, 300)
   }

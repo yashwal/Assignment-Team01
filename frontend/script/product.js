@@ -22,7 +22,6 @@ window.onload = function () {
 
       }
     }).then(response => {
-      console.log(response.status);
       const statusCode = response.status;
       if ((statusCode < 300) && (statusCode >= 200)) {
         response.json().then(data => {
@@ -42,26 +41,26 @@ window.onload = function () {
           }
           catch (err) {
             alert(err);
+            window.parent.location = `404.html`;
           }
         });
       }
       else if ((statusCode < 500) && (statusCode >= 400)) {
-        let prod_container = document.getElementById("outer-div");
-        prod_container.innerHTML += `</div>
-    <img src="images/error404.png" width="1000" height="650" class="center">
-    </div>`
+        window.parent.location = `404.html`;
       }
 
       else if ((statusCode < 600) && (statusCode >= 500)) {
-        let prod_container = document.getElementById("outer-div");
-        prod_container.innerHTML += `</div>
-    <img src="images/error500.png" width="1000" height="650" class="center">
-    </div>`
+        window.parent.location = `404.html`;
       }
 
       else {
         ;
       }
+    }).catch(err=>{
+      let prod_container = document.getElementById("row");
+          prod_container.innerHTML += `</div>
+        <img src="images/error500.png" class="error">
+        </div>`
     });
   }
   else {

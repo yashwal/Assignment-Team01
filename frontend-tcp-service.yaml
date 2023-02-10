@@ -19,3 +19,21 @@ spec:
   type: LoadBalancer
 status:
   loadBalancer: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  namespace: default
+spec:
+  rules:
+  - host: klothing.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-tcp
+            port:
+              number: 80

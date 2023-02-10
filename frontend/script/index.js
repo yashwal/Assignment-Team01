@@ -50,7 +50,7 @@ window.onload = function () {
   if (prod_query != null) {
     document.getElementById('loading').style.display = 'block';
     setTimeout(() => {
-      fetch(`http://127.0.0.1:7002/product_query?q=${prod_query}&page=${pageNumber}&sort=${sortKey}`, {
+      fetch(`http://127.0.0.1:7002/product_query/${prod_query}?page=${pageNumber}&sort=${sortKey}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -114,7 +114,7 @@ window.onload = function () {
               else {
                 pageDisplay = ``;
                 prod_container.innerHTML += `</div>
-          <img src="Images/error.jpg" width="1000" height="650" class="center">
+          <img src="images/error.jpg" width="1000" height="650" class="center">
           </div>`
                 footer_container.innerHTML = ` <ul>
         <li class="return-home" onclick="home()">Return to Home</li></ul>`
@@ -130,14 +130,14 @@ window.onload = function () {
         else if ((statusCode < 500) && (statusCode >= 400)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-          <img src="Images/error404.png" width="1000" height="650" class="center">
+          <img src="images/error404.png" width="1000" height="650" class="center">
           </div>`
         }
 
         else if ((statusCode < 600) && (statusCode >= 500)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-          <img src="Images/error500.png" width="1000" height="650" class="center">
+          <img src="images/error500.png" width="1000" height="650" class="center">
           </div>`
         }
 
@@ -151,7 +151,7 @@ window.onload = function () {
   else if (catLevel1 != null) {
     document.getElementById('loading').style.display = 'block';
     setTimeout(() => {
-      fetch(`http://127.0.0.1:7002/category?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`, {
+      fetch(`http://127.0.0.1:7002/category/${catLevel1}/${catLevel2}?page=${pageNumber}&sort=${sortKey}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -207,7 +207,7 @@ window.onload = function () {
               else {
                 pageDisplay = ``;
                 prod_container.innerHTML += `</div>
-            <img src="Images/error.jpg" width="1000" height="650" class="center">
+            <img src="images/error.jpg" width="1000" height="650" class="center">
             </div>`
                 footer_container.innerHTML = ` <ul>
           <li class="return-home" onclick="home()">Return to Home</li></ul>`
@@ -241,14 +241,14 @@ window.onload = function () {
         else if ((statusCode < 500) && (statusCode >= 400)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-        <img src="Images/error404.png" width="1000" height="650" class="center">
+        <img src="images/error404.png" width="1000" height="650" class="center">
         </div>`
         }
 
         else if ((statusCode < 600) && (statusCode >= 500)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-        <img src="Images/error500.png" width="1000" height="650" class="center">
+        <img src="images/error500.png" width="1000" height="650" class="center">
         </div>`
         }
 
@@ -264,7 +264,7 @@ window.onload = function () {
     }
     document.getElementById('loading').style.display = 'block';
     setTimeout(() => {
-      fetch(`http://127.0.0.1:7002/product_query?q=*&page=${pageNumber}&sort=${sortKey}`, {
+      fetch(`http://127.0.0.1:7002/product_query/*?page=${pageNumber}&sort=${sortKey}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -320,7 +320,7 @@ window.onload = function () {
               else {
                 pageDisplay = ``;
                 prod_container.innerHTML += `</div>
-        <img src="Images/error.jpg" width="1000" height="650" class="center">
+        <img src="images/error.jpg" width="1000" height="650" class="center">
         </div>`
                 footer_container.innerHTML = ` <ul>
       <li class="return_home" onclick="home()">Return to Home</li>
@@ -335,14 +335,14 @@ window.onload = function () {
         else if ((statusCode < 500) && (statusCode >= 400)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-      <img src="Images/error404.png" width="1000" height="650" class="center">
+      <img src="images/error404.png" width="1000" height="650" class="center">
       </div>`
         }
 
         else if ((statusCode < 600) && (statusCode >= 500)) {
           let prod_container = document.getElementById("outer-div");
           prod_container.innerHTML += `</div>
-      <img src="Images/error500.png" width="1000" height="650" class="center">
+      <img src="images/error500.png" width="1000" height="650" class="center">
       </div>`
         }
 

@@ -48,14 +48,14 @@ window.onload = function () {
       else if ((statusCode < 500) && (statusCode >= 400)) {
         let prod_container = document.getElementById("outer-div");
         prod_container.innerHTML += `</div>
-    <img src="Images/error404.png" width="1000" height="650" class="center">
+    <img src="images/error404.png" width="1000" height="650" class="center">
     </div>`
       }
 
       else if ((statusCode < 600) && (statusCode >= 500)) {
         let prod_container = document.getElementById("outer-div");
         prod_container.innerHTML += `</div>
-    <img src="Images/error500.png" width="1000" height="650" class="center">
+    <img src="images/error500.png" width="1000" height="650" class="center">
     </div>`
       }
 

@@ -10,7 +10,6 @@ function generateCategory() {
     }
 
   }).then(response => {
-    console.log(response.status);
     const statusCode = response.status;
     if ((statusCode < 300) && (statusCode >= 200)) {
       response.json().then(data => {

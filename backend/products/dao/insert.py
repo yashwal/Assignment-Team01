@@ -1,19 +1,23 @@
 import sys
 sys.path.append('..')
-from DAO.Connection import *
+from database.connection import *
 
 
-def productTable(data):
+
+def product_insert(data):
     '''
     creates a table named product which has all the product details
     A JSON file is given as input
     the function connects to the database and adds data to the product table
     '''
-
     res=connectDB()
     conn=res[0]
     cur=res[1]
-    cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text,cat_id text)")
+    
+    try:
+        cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text,cat_id text)")
+    except:
+        return {"Status":400}
     mapp = {}
     count = 0
 
@@ -30,20 +34,14 @@ def productTable(data):
             description=(i['productDescription'])
         except:
             description=""
-            print("0")
+            
         image_url=str(i['productImage'])
         price=str(i['price'])
-        
-        cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,count))
+        try:
+            cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,count))
+        except:
+            return {"Status":400}
         count+=1
         conn.commit()
-
-    print("Sucessfully added data to category database")
+        
     return{"Status":200}
-
-
-
-
-
-
-

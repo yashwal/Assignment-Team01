@@ -27,7 +27,7 @@ spec:
       containers:
         - command:
             - python
-            - controller/main.py
+            - model/main.py
           env:
             - name: CACHE_DEFAULT_TIMEOUT
               valueFrom:

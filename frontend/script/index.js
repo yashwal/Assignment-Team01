@@ -10,7 +10,6 @@ function sortedView(sortKey) {
   prod_query = urlParams.get('q');
   catLevel1 = urlParams.get('cat1');
   catLevel2 = urlParams.get('cat2');
-
   if (prod_query != null) {
     window.parent.location = `index.html?q=${prod_query}&page=1&sort=${sortKey}`
   }
@@ -36,6 +35,7 @@ window.onload = function () {
   let catLevel2 = urlParams.get('cat2');
   let pageNumber = urlParams.get('page')
   let sortKey = urlParams.get('sort')
+  let sortLabel= urlParams.get('sort')
 
   if (pageNumber === null) {
     pageNumber = 1;
@@ -68,13 +68,28 @@ window.onload = function () {
               if (data === null) throw "Unable to fetch data";
               let pages = data[0]
               let pageTotal = Math.ceil(pages / 9);
+              
+             
               data = data[1];
               let prod_container = document.getElementById("outer-div");
               prod_container.innerHTML = '';
 
               let currentPage_container = document.getElementById("current_page");
               if (prod_query!=='*'){
-              currentPage_container.innerHTML = `Showing Products for : "${prod_query}"`;
+
+                let sortKey = urlParams.get('sort')
+                if(sortKey=== "price asc"){
+                  sortLabel = "Price Low - High"
+                }
+                else if(sortKey=== "price desc"){
+                  sortLabel = "Price High - Low"
+                }
+                else {
+                  sortLabel="Featured"
+                }
+                
+              currentPage_container.innerHTML = `Showing Products for: ${prod_query} Filter: ${sortLabel} `;
+              
               }
               else{
                 currentPage_container.innerHTML = `Showing All The Products`;
@@ -173,6 +188,16 @@ window.onload = function () {
         if ((statusCode < 300) && (statusCode >= 200)) {
           response.json().then(data => {
             try {
+              let sortKey = urlParams.get('sort')
+                if(sortKey=== "price asc"){
+                  sortLabel = "Price Low - High"
+                }
+                else if(sortKey=== "price desc"){
+                  sortLabel = "Price High - Low"
+                }
+                else{
+                  sortLabel="Featured"
+                }
               if (data === null) throw "Unable to fetch data";
               let pages = data[0]
               let pageTotal = Math.ceil(pages / 9);
@@ -192,6 +217,9 @@ window.onload = function () {
               document.getElementById('loading').style.display = 'none';
               document.getElementById('outer-div').style.display = 'grid';
               pageNumber++;
+
+              
+
               let pageDisplay = ""
               let footer_container = document.getElementById("footer-div");
               if ((pageNumber - 1) * 9 < pages) {
@@ -222,7 +250,9 @@ window.onload = function () {
               if ((catLevel2 === 'men') || (catLevel2 === 'women')) {
                 catLevel2 = ((catLevel2.charAt(0)).toUpperCase() + catLevel2.slice(1));
                 let currentPage_container = document.getElementById("current_page");
-                currentPage_container.innerHTML = `Showing Products : ${catLevel2}`;
+                
+                
+                currentPage_container.innerHTML = `Showing Products : ${catLevel2}  Filter: ${sortLabel}`;
               }
               else {
                 if (catLevel1 === '0') {
@@ -234,8 +264,21 @@ window.onload = function () {
                 else {
                   catLevel1 = "Gift Cards"
                 }
+                let sortKey = urlParams.get('sort')
+                if(sortKey=== "price asc"){
+                  sortLabel = "Price Low - High"
+                }
+                else if(sortKey=== "price desc"){
+                  sortLabel = "Price High - Low"
+                }
+                else if(sortKey==="ftrd"){
+                  sortLabel="Featured"
+                }
+                else
+                  sortKey==""
+                
                 let currentPage_container = document.getElementById("current_page");
-                currentPage_container.innerHTML = `Showing Products : ${catLevel1} &rarr; ${catLevel2.replace(/([A-Z])/g, ' $1').trim()}`;
+                currentPage_container.innerHTML = `Showing Products: ${catLevel1} &rarr; ${catLevel2.replace(/([A-Z])/g, ' $1').trim()}   Filter: ${sortLabel}`;
               }
               document.getElementById('current_page').style.display = 'inline';
             }

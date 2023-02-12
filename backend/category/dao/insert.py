@@ -1,17 +1,21 @@
 import sys
 sys.path.append('..')
-from DAO.Connection import *
+from database.connection import *
 
-def categoryTable(data):
+def category_insertion(data):
+
     '''
     creates category table in PostgreSQL with columns cat_id,cat_label and parent_id. cat_id is the primary key.
     Populates the databse with cat_id,cat_label and parent_id.
     cat_label is the name of categorylevel1 and parent_is is the mapping between categorylevel1 and its parent category.
     '''
+
     res=connectDB()
     conn=res[0]
     cur=res[1]
+    
     cur.execute("create table category(cat_id text PRIMARY key,cat_label text,parent_id text)")
+
     mapp = {}
     count = 0
 
@@ -33,9 +37,9 @@ def categoryTable(data):
         except:
             catLevel2 = "Others"
         parent_id = mapp[catLevel1]
-        cur.execute("INSERT INTO category values(%s,%s,%s)",(count,catLevel2,str(parent_id),))
+
+        cur.execute("INSERT INTO category values(%s,%s,%s)",(count,catLevel2,str(parent_id),))       
         count+=1
         conn.commit()
-
-    print("Sucessfully added data to category database")
-    return{"Status":200}
+        
+    return{"Status":"200"}

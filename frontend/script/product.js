@@ -8,7 +8,7 @@ window.onload = function () {
   let prod_query = urlParams.get('q');
 
   if (prod_query === "") {
-    let prod_query = '*';
+       prod_query = '*';
   }
 
   if (uniqueId != null) {

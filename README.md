@@ -27,7 +27,7 @@ All the API are restful and are made using flask_resftul module.
 <br>
 <br>
 - Product Query<br>
-    GET /product_query HTTP/1.1<br>
+    GET /product_query HTTP/ 1.1<br>
     Host: localhost<br>
     Arguments:  <br>
                 'q', default="", type=str<br>

@@ -5,7 +5,7 @@ from category.dao.retreive import *
 from category.dao.tree import *
 
 
-def searchCategory(catLevel1,catLevel2):
+def searchCategory(catId):
     '''
     category level 1 and 2 are given as input along with pagenumber and sort key
     returns products list
@@ -14,7 +14,7 @@ def searchCategory(catLevel1,catLevel2):
     sortKey = request.args.get('sort', default="ftrd", type =str)
     pageNumber=(pageNumber-1)*9
     
-    return retrieve_category(catLevel1,catLevel2,pageNumber,sortKey)
+    return retrieve_category(catId,pageNumber,sortKey)
 
     
 

@@ -1,4 +1,8 @@
 function generateCategory() {
+
+  let parentArr = {}; 
+  let childArr = {};
+
   fetch(`http://127.0.0.1:7002/categoryTree`, {
     method: 'GET',
     mode: 'cors',
@@ -16,33 +20,35 @@ function generateCategory() {
         try {
           if (data === null) throw "Unable to fetch data";
           let cat1 = data[0];
-          let cat2 = data[1];
-          let cat3 = data[2];
           let cat_container = document.getElementById("dropdownheader");
           cat_container.innerHTML = ``;
           for (let i = 0; i < cat1.length; i++) {
-            let catId = cat1[i][1];
+            let parentId = cat1[i][1];
             let catValue = cat1[i][0];
             let value = cat1[i][0];
-            if (catValue != 'exp') {
-              let dataElement = data[parseInt(catId) + 1];
-              let elementArr = dataElement[catId];
+            parentArr[parentId] = catValue;
+            
+            if (value != 'exp') {
+              let dataElement = data[parseInt(parentId) + 1];
+              let elementArr = dataElement[parentId];
               var tempo = ``;
               for (let j = 0; j < elementArr.length; j++) {
-                let valueName = elementArr[j].replace(/([A-Z])/g, ' $1').trim();
-                tempo += `<li onclick="getCategory('${catId}','${elementArr[j]}')" class="hover-button">${valueName}</li>`;
+                let catId = elementArr[j][1];
+                let valueName = elementArr[j][0].replace(/([A-Z])/g, ' $1').trim();
+                childArr[String(catId)] = valueName;
+                tempo += `<li onclick="getCategory('${String(catId)}')" class="hover-button">${valueName}</li>`;
               }
             }
             if (catValue == 'exp') {
               value = 'Others';
               cat_container.innerHTML += `<div class="right-menu">
-        <button class="button" onclick="getCategory('${catId}','${value}')">Gift Cards</button>
-        </div>`;
+              <button class="button" onclick="getCategory('exp')">Gift Cards</button>
+              </div>`;
             }
             else {
               cat_container.innerHTML += `<div class="right-menu">
-      <button class="button" onclick="getCategory('${catId}',value)" value="${value}">${catValue}</button>
-      <div class="dropdown-menu">` + tempo;
+              <button class="button" onclick="getCategory('${catValue}')">${catValue}</button>
+              <div class="dropdown-menu">` + tempo;
             }
           }
         }
@@ -69,6 +75,9 @@ function generateCategory() {
       ;
     }
   });
+
+return childArr;
+
 };
 
 export { generateCategory };

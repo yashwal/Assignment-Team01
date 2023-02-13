@@ -132,3 +132,17 @@
     cursor: pointer;
     font-family: 'sans-serif','verdana';
   }
+
+  #sort{
+    position:relative;
+    height: 30px;
+    width:140px;
+    background-color: #F7EFE5;
+    border: none;
+    color:black;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-top: 7px;
+  }

@@ -12,20 +12,20 @@ def category_insertion(data):
     mapp = {}
     count = 0
 
-    for i in data:
-        catLevel1=str(i['catlevel1Name'])
+    for product in data:
+        catLevel1=str(product['catlevel1Name'])
         if catLevel1 not in mapp:
             mapp[catLevel1] = count
             count += 1
     
-    for i in mapp:
-        cur.execute("INSERT INTO category values(%s,%s,%s)",(mapp[i],i,-1))
+    for cat1 in mapp:
+        cur.execute("INSERT INTO category values(%s,%s,%s)",(mapp[cat1],cat1,-1))
         conn.commit()
     
-    for i in data:
-        catLevel1=str(i['catlevel1Name'])
+    for product in data:
+        catLevel1=str(product['catlevel1Name'])
         try:
-            catLevel2=str(i['catlevel2Name']).replace(" ",'')
+            catLevel2=str(product['catlevel2Name']).replace(" ",'')
             catLevel2=catLevel2.replace("&",'')
         except:
             catLevel2 = "Others"
@@ -44,16 +44,16 @@ def category_insertion(data):
     exp=cur.fetchall()
 
     id=1
-    for i in men:
-        cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,i[0],"0"))
+    for product in men:
+        cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,product[0],"0"))
         id+=1
         conn.commit()
-    for i in women:
-        cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,i[0],"1"))
+    for product in women:
+        cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,product[0],"1"))
         id+=1
         conn.commit()
-    for i in exp:
-        cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,i[0],"2"))
+    for product in exp:
+        cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,product[0],"2"))
         id+=1
         conn.commit()
 

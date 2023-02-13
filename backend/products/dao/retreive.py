@@ -7,7 +7,7 @@ from search.searchapi import *
 
 def product_retreive(productId):
     ''''
-    The database is searched for the given productId, if found, will return all the product details.
+    The databse is searched for the given productId, if found, will return all the product details.
     If not found, a search request is sent to unbxd search api and the required details are fetched. 
     
     '''

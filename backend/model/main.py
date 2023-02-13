@@ -56,9 +56,9 @@ class category(Resource):
     fetch products for the given category
     '''
     @cache.cached(timeout=30, query_string=True)
-    def get(self,catLevel1,catLevel2): 
-        return searchCategory(catLevel1,catLevel2)
-api.add_resource(category,"/category/<string:catLevel1>/<string:catLevel2>")
+    def get(self,catId): 
+        return searchCategory(catId)
+api.add_resource(category,"/category/<string:catId>")
 
 if __name__=='__main__':
     host()

@@ -4,18 +4,16 @@ function sortedView(sortKey) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   let prod_query = null;
-  let catLevel1 = null;
-  let catLevel2 = null;
+  let catId = null;
   let pageNumber = 1;
   prod_query = urlParams.get('q');
-  catLevel1 = urlParams.get('cat1');
-  catLevel2 = urlParams.get('cat2');
+  catId = urlParams.get('catid');
   if (prod_query != null) {
     window.parent.location = `index.html?q=${prod_query}&page=1&sort=${sortKey}`
   }
 
-  else if (catLevel1 != null) {
-    window.parent.location = `index.html?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`
+  else if (catId != null) {
+    window.parent.location = `index.html?catid=${catId}&page=${pageNumber}&sort=${sortKey}`
   }
 
   else {
@@ -34,13 +32,12 @@ window.onload = function () {
   if (prod_query === "") {
     prod_query = '*';
   }
-  let catLevel1 = urlParams.get('cat1');
-  let catLevel2 = urlParams.get('cat2');
+  let catId = urlParams.get('catid');
   let pageNumber = urlParams.get('page')
   let sortKey = urlParams.get('sort')
   let sortLabel= urlParams.get('sort')
 
-  if (pageNumber === null) {
+  if (pageNumber === null || pageNumber <= 1) {
     pageNumber = 1;
   }
 
@@ -48,7 +45,7 @@ window.onload = function () {
     sortKey = '';
   }
 
-  generateCategory();
+  let childArray = generateCategory();
 
   if (prod_query != null) {
     document.getElementById('loading').style.display = 'block';
@@ -92,7 +89,7 @@ window.onload = function () {
                 }
               filter.innerHTML = '';
               filter.innerHTML += sortLabel+' &#9662;';
-              currentPage_container.innerHTML = `Showing Products for: ${prod_query}`;
+              currentPage_container.innerHTML = `Showing Products for: "${prod_query}"`;
               
               }
               else{
@@ -171,13 +168,13 @@ window.onload = function () {
     }, 300)
   }
 
-  else if (catLevel1 != null) {
-    if(catLevel1==="" || catLevel2===""){
+  else if (catId != null) {
+    if(catId===""){
       window.parent.location=`500.html`
     }
     document.getElementById('loading').style.display = 'block';
     setTimeout(() => {
-      fetch(`http://127.0.0.1:7002/category/${catLevel1}/${catLevel2}?page=${pageNumber}&sort=${sortKey}`, {
+      fetch(`http://127.0.0.1:7002/category/${catId}?page=${pageNumber}&sort=${sortKey}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -202,9 +199,9 @@ window.onload = function () {
                 else{
                   sortLabel="Featured"
                 }
-              
-              filter.innerHTML = '';
-              filter.innerHTML += sortLabel+' &#9662;';
+
+                filter.innerHTML = '';
+                filter.innerHTML += sortLabel+' &#9662;';
 
               if (data === null) throw "Unable to fetch data";
               let pages = data[0]
@@ -255,22 +252,27 @@ window.onload = function () {
               <li class="return-home" onclick="home()">Return to Home</li></ul>`
               }
 
-              if ((catLevel2 === 'men') || (catLevel2 === 'women')) {
-                catLevel2 = ((catLevel2.charAt(0)).toUpperCase() + catLevel2.slice(1));
+              let catLevel1 = '';
+              let catLevel2 = '';
+              if ((catId === 'men') || (catId === 'women')) {
+                let catLevel2 = ((catId.charAt(0)).toUpperCase() + catId.slice(1));
                 let currentPage_container = document.getElementById("current_page");
                 
                 
                 currentPage_container.innerHTML = `Showing Products : ${catLevel2}`;
               }
               else {
-                if (catLevel1 === '0') {
-                  catLevel1 = "Men"
+                if (catId <= 12 && catId >= 0) {
+                  catLevel1 = "Men";
+                  catLevel2 = childArray[catId];
                 }
-                else if (catLevel1 === '1') {
-                  catLevel1 = "Women"
+                else if (catId > 12 && catId <= 27) {
+                  catLevel1 = "Women";
+                  catLevel2 = childArray[catId];
                 }
                 else {
                   catLevel1 = "Gift Cards"
+                  catLevel2 = "Others";
                 }
                 let sortKey = urlParams.get('sort')
                 if(sortKey=== "price asc"){
@@ -282,12 +284,12 @@ window.onload = function () {
                 else if(sortKey==="ftrd"){
                   sortLabel="Featured"
                 }
-                else{
-                  sortKey==""}
+                else
+                  sortKey==""
                 
-                filter.innerHTML = '';
-                filter.innerHTML += sortLabel+' &#9662;';
-                
+                  filter.innerHTML = '';
+                  filter.innerHTML += sortLabel+' &#9662;';
+
                 let currentPage_container = document.getElementById("current_page");
                 currentPage_container.innerHTML = `Showing Products: ${catLevel1} &rarr; ${catLevel2.replace(/([A-Z])/g, ' $1').trim()}`;
               }
@@ -365,31 +367,30 @@ window.onload = function () {
               pageNumber++;
               let pageDisplay = ""
               let footer_container = document.getElementById("footer-div");
-
               if ((pageNumber - 1) * 9 < pages) {
                 pageDisplay = `Showing ${(pageNumber - 2) * 9 + 1}-${(pageNumber - 1) * 9} of ${pages} products`;
                 footer_container.innerHTML = ` <ul class="page">
-                <li class="text-footer" onclick="prevPage()"> &lt; </li>
-                <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
-                <li class="text-footer" onclick="nextPage()"> &gt; </li>
-                <li class="product-text">${pageDisplay}</li></ul>`
+      <li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
               }
               else if (((pageNumber - 2) * 9 + 1 <= pages) && ((pageNumber - 1) * 9 + 1 > pages)) {
                 pageDisplay = `Showing ${(pageNumber - 2) * 9 + 1}-${pages} of ${pages} products`;
                 footer_container.innerHTML = ` <ul class="page">
-                <li class="text-footer" onclick="prevPage()"> &lt; </li>
-                <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
-                <li class="text-footer" onclick="nextPage()"> &gt; </li>
-                <li class="product-text">${pageDisplay}</li></ul>`
+      <li class="text-footer" onclick="prevPage()"> &lt; </li>
+      <li class="text-footer" id="pageNumber" value="${pageNumber}"> ${pageNumber - 1} </li>
+      <li class="text-footer" onclick="nextPage()"> &gt; </li>
+      <li class="product-text">${pageDisplay}</li></ul>`
               }
               else {
                 pageDisplay = ``;
                 prod_container.innerHTML += `</div>
-                <img src="images/error.jpg" width="1000" height="650" class="center">
-                </div>`
+        <img src="images/error.jpg" width="1000" height="650" class="center">
+        </div>`
                 footer_container.innerHTML = ` <ul>
-                <li class="return_home" onclick="home()">Return to Home</li>
-                </ul>`
+      <li class="return_home" onclick="home()">Return to Home</li>
+      </ul>`
               }
             }
             catch (err) {

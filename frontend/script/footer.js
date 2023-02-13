@@ -14,8 +14,7 @@ function prevPage(){
     const urlParams = new URLSearchParams(queryString);
     let prod_query =urlParams.get('q');
     let sortKey = urlParams.get('sort');
-    let catLevel1 = urlParams.get('cat1');
-    let catLevel2 = urlParams.get('cat2');
+    let catId = urlParams.get('catid');
     if ((sortKey===null)||(sortKey==='null'||sortKey==="")){
         sortKey = fetchSortKey();
     }
@@ -24,8 +23,8 @@ function prevPage(){
     if ((pageNumber >= 1)&&(sortKey!==null)&&(prod_query!==null)){
         window.parent.location = `index.html?q=${prod_query}&page=${pageNumber}&sort=${sortKey}`
     }
-    if ((pageNumber >= 1)&&(sortKey!==null)&&(catLevel1!==null)){
-        window.parent.location = `index.html?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`
+    if ((pageNumber >= 1)&&(sortKey!==null)&&(catId!==null)){
+        window.parent.location = `index.html?catid=${catId}&page=${pageNumber}&sort=${sortKey}`
     }
 }
 
@@ -34,8 +33,7 @@ function nextPage(){
     let urlParams = new URLSearchParams(queryString);
     let prod_query = urlParams.get('q');
     let sortKey = urlParams.get('sort');
-    let catLevel1 = urlParams.get('cat1');
-    let catLevel2 = urlParams.get('cat2');
+    let catId = urlParams.get('catid');
     if ((sortKey===null)||(sortKey==='null'||sortKey==="")){
         sortKey = fetchSortKey();
     }
@@ -48,7 +46,7 @@ function nextPage(){
     if ((pageNumber >= -1000)&&(sortKey!==null)&&(prod_query!==null)){
         window.parent.location = `index.html?q=${prod_query}&page=${pageNumber}&sort=${sortKey}`
     }
-    if ((pageNumber >= 1)&&(sortKey!==null)&&(catLevel1!==null)){
-        window.parent.location = `index.html?cat1=${catLevel1}&cat2=${catLevel2}&page=${pageNumber}&sort=${sortKey}`
+    if ((pageNumber >= 1)&&(sortKey!==null)&&(catId!==null)){
+        window.parent.location = `index.html?catid=${catId}&page=${pageNumber}&sort=${sortKey}`
     }
 }

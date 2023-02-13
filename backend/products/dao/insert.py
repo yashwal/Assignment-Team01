@@ -21,22 +21,18 @@ def product_insert(data):
     mapp = {}
     count = 0
 
-    for i in data:
-        catLevel1=str(i['catlevel1Name'])
+    for product in data:
+        catLevel1=str(product['catlevel1Name'])
         if catLevel1 not in mapp:
             mapp[catLevel1] = count
             count += 1
     
-    for i in data:
-        product_id=str(i['uniqueId'])
-        title=str(i['title'])
-        try:
-            description=(i['productDescription'])
-        except:
-            description=""
-            
-        image_url=str(i['productImage'])
-        price=str(i['price'])
+    for product in data:
+        product_id=str(product['uniqueId'])
+        title=str(product['title'])
+        description=product.get('productDescription',"")
+        image_url=str(product['productImage'])
+        price=str(product['price'])
         try:
             cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,count))
         except:

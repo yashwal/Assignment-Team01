@@ -20,25 +20,25 @@ def product_insert(data):
     cur.execute("select cat_id,cat_label,parent_id from category02")
     category=cur.fetchall()
 
-    for i in data:
-        catLevel1=str(i['catlevel1Name'])
+    for product in data:
+        catLevel1=str(product['catlevel1Name'])
         if catLevel1 not in mapp:
             mapp[catLevel1] = count
             count += 1
     
-    for i in data:
-        product_id=str(i['uniqueId'])
-        title=str(i['title'])
+    for product in data:
+        product_id=str(product['uniqueId'])
+        title=str(product['title'])
         try:
-            description=(i['productDescription'])
+            description=(product['productDescription'])
         except:
             description=""
             print("0")
-        image_url=str(i['productImage'])
-        price=str(i['price'])
-        catLevel1=str(i['catlevel1Name'])
+        image_url=str(product['productImage'])
+        price=str(product['price'])
+        catLevel1=str(product['catlevel1Name'])
         try:
-            catLevel2=str(i['catlevel2Name']).replace(" ",'')
+            catLevel2=str(product['catlevel2Name']).replace(" ",'')
             catLevel2=catLevel2.replace("&",'')
         except:
             catLevel2 = "Others"

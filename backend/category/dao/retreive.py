@@ -12,6 +12,7 @@ def retrieve_category(catId,pageNumber,sortKey):
     conn=res[0]
     cur=res[1]
     mapp = {"men":'0',"women":'1',"exp":'2'}
+    
     if(catId=="women" or catId=="men" or catId=="exp"):
         cur.execute("select product_id,title,description,image_url,price from product  INNER JOIN category02 on product.cat_id = category02.cat_id where parent_id=%s",(mapp[catId]))
     else:

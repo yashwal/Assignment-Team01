@@ -7,12 +7,10 @@ All the API are restful and are made using flask_resftul module.
 # API Spec
 
 - Data Ingestion:
-    POST   /upload   HTTP/1.1
+     POST 
+    "/upload"  HTTP/1.1
     Host: localhost
     Content-Type: application/json
-    {
-    JSON
-    }
 - input should be out.json file
 <br>
 <br>
@@ -27,28 +25,15 @@ All the API are restful and are made using flask_resftul module.
 <br>
 <br>
 - Product Query<br>
-    GET /product_query HTTP/ 1.1<br>
-    Host: localhost<br>
-    Arguments:  <br>
-                'q', default="", type=str<br>
-                'page', default=1, type=int<br>
-                'sort', default="ftrd", type=str<br>
+     GET 
+    "/product_query/<string:searchQuery>"  HTTP/1.1
+    Host: klothing.com 
 <br>
 <br>
-- Product Sort<br>
-    GET /product_query/<string:searchQuery>/<string:sortKey>/<int:pageNumber> HTTP/1.1<br>
-    Host: localhost<br>
-<br>
-<br>
-- Category Sort<br>
-    GET /categorySort HTTP/1.1<br>
-    Host: localhost<br>
-    Arguments:<br>
-                'cat1', default="", type=str<br>
-                'cat2', default="", type=str<br>
-                'sort', default="ftrd", type =str<br>
-                'page', default=1, type=int<br>
-
+- Category <br>
+    GET 
+    "/category/<string:catId>"  HTTP/1.1
+    Host: klothing.com 
 <br>
 <br>
 <br>
@@ -63,6 +48,7 @@ CACHE_REDIS_DB=0<br>
 CACHE_REDIS_URL=redis://redis:6379/0<br>
 CACHE_DEFAULT_TIMEOUT=500<br>
 <br>
+
 # Docker Installation Instruction
 To run backend:
 - Go to Assignment folder

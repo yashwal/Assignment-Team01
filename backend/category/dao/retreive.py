@@ -8,11 +8,13 @@ def retrieve_category(catId,pageNumber,sortKey):
     '''
     For given catlevel1 and catlevel2 parameters, the functions fetches the product details from the category and product database.
     '''
-    res=connectDB()
+    res=connectDB() #establish connection with database
     conn=res[0]
     cur=res[1]
     mapp = {"men":'0',"women":'1',"exp":'2'}
     
+    
+    #retrieve data from product and category table
     if(catId=="women" or catId=="men" or catId=="exp"):
         cur.execute("select product_id,title,description,image_url,price from product  INNER JOIN category02 on product.cat_id = category02.cat_id where parent_id=%s",(mapp[catId]))
     else:
@@ -31,6 +33,6 @@ def retrieve_category(catId,pageNumber,sortKey):
     sliced_data=new_data[pageNumber:pageNumber+9] 
     
     cur.close()
-    conn.close()
+    conn.close() 
     return [len(new_data),sliced_data]
 

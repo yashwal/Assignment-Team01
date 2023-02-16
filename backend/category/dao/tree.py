@@ -8,7 +8,7 @@ def category_tree():
     Access the category table and creates the category tree in the form of list of lists.
     the first list contains all categorylevel1 items and second list contains all categorylevel2 items.
     '''
-    res=connectDB()
+    res=connectDB() #establish connection with database
     conn=res[0]
     cur=res[1]
     cur.execute("select distinct cat_label,cat_id from category where parent_id='-1'")
@@ -36,4 +36,4 @@ def category_tree():
     new_data.append({"1":women})
     cur.close()
     conn.close()
-    return new_data
+    return new_data # return category tree

@@ -4,6 +4,13 @@ Backend is coded using Pythion and Flask.
 Frontend is using HTML and javascript.
 All the API are restful and are made using flask_resftul module.
 
+<br>
+<br>
+# PPT Link
+https://www.canva.com/design/DAFaeD5Wo-8/MzYFwVJ9_aiEYEOXln6vjw/view?utm_content=DAFaeD5Wo-8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+<br>
+<br>
 # API Spec
 
 - Data Ingestion:

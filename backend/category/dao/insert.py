@@ -3,12 +3,12 @@ sys.path.append('..')
 from database.connection import *
 
 def category_insertion(data):
-    res=connectDB()
+    res=connectDB() #establishing connection with database
     conn=res[0]
     cur=res[1]
     
-    cur.execute("create table category(cat_id text PRIMARY key,cat_label text,parent_id text)")
-    cur.execute("create table category02(cat_id varchar PRIMARY key,cat_label text,parent_id text)")
+    cur.execute("create table category(cat_id text PRIMARY key,cat_label text,parent_id text)") 
+    cur.execute("create table category02(cat_id varchar PRIMARY key,cat_label text,parent_id text)") #Creating category table
     mapp = {}
     count = 0
 
@@ -44,6 +44,9 @@ def category_insertion(data):
     exp=cur.fetchall()
 
     id=1
+    '''
+    inserting details into category02 table
+    '''
     for product in men:
         cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,product[0],"0"))
         id+=1
@@ -56,7 +59,6 @@ def category_insertion(data):
         cur.execute("INSERT INTO category02 values(%s,%s,%s)",(id,product[0],"2"))
         id+=1
         conn.commit()
-
 
         
     return{"Category Table population":"Successfull","Status":200}

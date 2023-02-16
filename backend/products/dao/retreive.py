@@ -11,7 +11,7 @@ def product_retreive(productId):
     If not found, a search request is sent to unbxd search api and the required details are fetched. 
     
     '''
-    res=connectDB()
+    res=connectDB() #establish connection
     conn=res[0]
     cur=res[1]
     cur.execute("select * from product where product_id=%s",(str(productId),))

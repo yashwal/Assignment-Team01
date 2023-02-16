@@ -52,7 +52,15 @@ CACHE_DEFAULT_TIMEOUT=500<br>
 # Docker Installation Instruction
 To run backend:
 - Go to Assignment folder
-- Run: docker-compose up -d --build
+- Run:  minikube start
+
+        minikube tunnel
+
+        In build folder run:
+        kubectl apply -f adminer-deployment.yaml,adminer-service.yaml,api-deployment.yaml,api-service.yaml,assignment-team01-default-networkpolicy.yaml,database-deployment.yaml,database-service.yaml,env-configmap.yaml,redis-deployment.yaml,redis-service.yaml,frontend-deployment.yaml,frontend-tcp-service.yaml
+
+         kubectl port-forward deployment/api 7002:7002
+
 - On terminal run this command for data ingestion into database :
         curl http://127.0.0.1:7002/upload -d @out.json -H "Content-Type: application/json
 

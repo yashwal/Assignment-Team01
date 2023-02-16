@@ -10,11 +10,13 @@ def product_insert(data):
     A JSON file is given as input
     the function connects to the database and adds data to the product table
     '''
-    res=connectDB()
+    res=connectDB() #establish connection with database
     conn=res[0]
     cur=res[1]
     
     cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text,cat_id varchar)")
+    #creating product table in sql
+    
     mapp = {}
     count = 0
     cur.execute("select cat_id,cat_label,parent_id from category02")
@@ -49,6 +51,7 @@ def product_insert(data):
             if(temp[1]==catLevel2 and temp[2]==str(mapp[catLevel1])):
                 cat_id=temp[0]
         cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,cat_id))
+        #inserting data into product table
         count+=1
         conn.commit()
         

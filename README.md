@@ -79,19 +79,19 @@ In browser:
 ## Screenshots:
 <br>
 ## Homepage
-Screenshots/Homepage.png
+![Homepage](Screenshots/Homepage.png)
 <br>
 ## Filter
-Screenshots/Filter.png
+![Filter](Screenshots/Filter.png)
 <br>
 ## Header
-Screenshots/Header.png
+![Header](Screenshots/Header.png)
 <br>
 ## Pagination
-Screenshots/Pagination.png
+![Pagination](Screenshots/Pagination.png)
 <br>
 ## Search Page
-Screenshots/Products_after_query.png
+![Search Page](Screenshots/Products_after_query.png)
 <br>
 
 

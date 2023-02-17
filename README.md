@@ -1,4 +1,4 @@
-# Basic Summary
+# Klothing.com
 The prpoject consists of two components: Frontend and Backend.
 Backend is coded using Pythion and Flask.
 Frontend is using HTML and javascript.
@@ -71,12 +71,16 @@ To run backend:
 - On terminal run this command for data ingestion into database :
         curl http://127.0.0.1:7002/upload -d @out.json -H "Content-Type: application/json
 
-To run frontend:
-- docker build -t zoro:v1 . 
-- docker run -d -p 80:80 zoro:v1
+In browser:
+- Open localhost to access GUI
+<br>
+<br>
 
-Now, both the frontend and backend will be running in docker.
-Open localhost for user interface
+Screenshots:
+## Homepage
+![Homepage](Screenshots/Category Dropdown.png)
+
+
 
 
 

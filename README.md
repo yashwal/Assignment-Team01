@@ -76,10 +76,11 @@ In browser:
 <br>
 <br>
 
-## Screenshots:
+
+Screenshots:
 <br>
-## Homepage
-![Homepage](Screenshots/Homepage.png)
+## Homepage<br>
+![Homepage](/Screenshots/Homepage.png)
 <br>
 ## Filter
 ![Filter](Screenshots/Filter.png)

@@ -76,9 +76,25 @@ In browser:
 <br>
 <br>
 
-Screenshots:
+## Screenshots:
+<br>
 ## Homepage
-![Homepage](Screenshots/Homepage.png)
+Screenshots/Homepage.png
+<br>
+## Filter
+Screenshots/Filter.png
+<br>
+## Header
+Screenshots/Header.png
+<br>
+## Pagination
+Screenshots/Pagination.png
+<br>
+## Search Page
+Screenshots/Products_after_query.png
+<br>
+
+
 
 
 

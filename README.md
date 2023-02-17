@@ -78,7 +78,7 @@ In browser:
 
 Screenshots:
 ## Homepage
-![Homepage](Screenshots/Category Dropdown.png)
+![Homepage](Screenshots/Homepage.png)
 
 
 

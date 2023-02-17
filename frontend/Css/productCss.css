@@ -7,7 +7,7 @@
     width: 30%;
     height: 500px;
     margin-left: 7%;
-    margin-top: 40px;
+    margin-top: 50px;
     padding-left:50px;
     padding-top:10px;
     background-color:#C3ACD0;
@@ -19,7 +19,7 @@
     float: left;
     width:50%;
     height: 500px;
-    margin-top: 40px;
+    margin-top: 50px;
     padding-left: 10px;
     background-color:#C3ACD0;
     border-top-right-radius : 5%;
@@ -61,9 +61,64 @@
     border: 0.5px solid gray;
   }
 
+  .col {
+    margin-top: 7.5%;
+    float: left;
+    width: 22.5%;
+    height: 400px;
+    text-align: center;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    background-color:#674188;
+    border-radius: 5%;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .rec_image{
+    width: 200px;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 15px;
+  }
+
+  .rec_image:hover{
+    transition:1s;
+    transform: scale(1.1);
+    border-radius: 5%;
+    box-shadow: rgba(25, 0, 255, 0.12) 0px 54px 55px, rgba(25, 0, 255, 0.12) 0px -12px 30px, rgba(25, 0, 255, 0.12) 0px 4px 6px, rgba(25, 0, 255, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+
+  .rec_image_text{
+    font-size: 21px;
+    font-family: 'sans-serif','verdana';
+    text-transform: capitalize;
+    color: #f7efe5;
+  }
+
+  .rec_price{
+    font-size: 20px;
+    font-family: 'fantasy','copperplate';
+    padding: 10px;
+    color: #f7efe5;
+  }
+
   sup{
     line-height: 0;
-    font-size: 20px;
-    vertical-align:8px;
+    font-size: 16px;
+    vertical-align:5px;
     padding-left:2px;
+    padding-right:2px;
+  }
+  
+  #sup_price{
+    line-height: 0;
+    font-size: 20px;
+    vertical-align:10px;
+    padding-left:2px;
+    padding-right:2px;
   }

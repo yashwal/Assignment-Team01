@@ -6,6 +6,7 @@ from category.controller.categoryInsertion import *
 from category.controller.categoryRetreival import *
 from products.controller.productInsertion import *
 from products.controller.productRetreival import *
+from recommendations.controller.recommend import *
 from search.searchapi import *
 from app import api,cache,host
 
@@ -17,7 +18,9 @@ class upload(Resource):
     def post(self):
         data=request.json
         categoryTable(data)
-        return productTable(data)
+        res=productTable(data)
+        pkldump()
+        return res
 api.add_resource(upload,"/upload")
 
 
@@ -59,6 +62,15 @@ class category(Resource):
     def get(self,catId): 
         return searchCategory(catId)
 api.add_resource(category,"/category/<string:catId>")
+
+class recommend(Resource):
+    '''
+    product_id is given as input , returns the product details
+    '''
+    @cache.cached(timeout=30, query_string=True)
+    def get(self,productId):
+        return getRecommendation(productId)
+api.add_resource(recommend,"/recommend/<string:productId>")
 
 if __name__=='__main__':
     host()

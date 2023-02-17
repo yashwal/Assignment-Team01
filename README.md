@@ -82,11 +82,14 @@ Screenshots:
 ## Homepage<br>
 ![Homepage](/Screenshots/Homepage.png)
 <br>
+## Product display page
+![product page ](Screenshots/Product_Display_Page.png)
+<br>
+## Recommendations  
+![Recommendations ](Screenshots/recommended_products.png)
+<br>
 ## Filter
 ![Filter](Screenshots/Filter.png)
-<br>
-## Header
-![Header](Screenshots/Header.png)
 <br>
 ## Pagination
 ![Pagination](Screenshots/Pagination.png)
@@ -94,6 +97,14 @@ Screenshots:
 ## Search Page
 ![Search Page](Screenshots/Products_after_query.png)
 <br>
+## Category Dropdown 
+![Category](Screenshots/Category_Dropdown.png)
+<br>
+## Filter Dropdown 
+![filter ](Screenshots/Filter_Dropdown.png)
+<br>
+
+
 
 
 

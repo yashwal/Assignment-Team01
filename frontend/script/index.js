@@ -21,6 +21,19 @@ function sortedView(sortKey) {
   }
 }
 
+function star(value){
+  let point = String((parseFloat(value).toFixed(2))).slice(-2);
+  let disp = ``;
+  let i;
+  for(i=1;i<=value;i++){
+    disp += `<i class="fa fa-star full-star" style="font-size:18px"></i>`;
+  }
+  if (point==='50')
+    disp += `<i class="fa fa-star-half-o full-star" style="font-size:18px"></i>`;
+  // console.log(value);
+  return disp;
+}
+
 window.onload = function () {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -84,8 +97,11 @@ window.onload = function () {
                 else if(sortKey=== "price desc"){
                   sortLabel = "Price High - Low"
                 }
-                else {
+                else if(sortKey==="ftrd"){
                   sortLabel="Featured"
+                }
+                else{
+                  sortLabel = "Filter"
                 }
               filter.innerHTML = '';
               filter.innerHTML += sortLabel+' &#9662;';
@@ -196,8 +212,11 @@ window.onload = function () {
                 else if(sortKey=== "price desc"){
                   sortLabel = "Price High - Low"
                 }
-                else{
+                else if(sortKey==="ftrd"){
                   sortLabel="Featured"
+                }
+                else{
+                  sortLabel = "Filter"
                 }
 
                 filter.innerHTML = '';
@@ -212,10 +231,12 @@ window.onload = function () {
               for (let i = 0; i < data.length; i++) {
                 let decimal = (parseFloat(data[i]['price']).toFixed(2)).slice(-2);
                 let price = String(parseInt(data[i]['price']));
+                let rating = parseFloat(data[i]['rating']);
+                let disp = star(rating);
                 prod_container.innerHTML += `<div class="column" name="uid" onclick="window.open('product.html?uid=${data[i]['uniqueId']}','_self')">
               <img class="image" src="${data[i]['Img_URL']}">
               <p class="image_text">${data[i]['Title']}</p>
-              <p class="price"><sup>$</sup>${price}<sup>${decimal}</sup></p>
+              <p class="price"><sup>$</sup>${price}<sup>${decimal}</sup> ${disp}</p>
               </a>
             </div>`
               }
@@ -426,7 +447,7 @@ window.onload = function () {
   }
   let feature_li = document.getElementById("feature_li");
   feature_li.onclick = function () {
-    sortedView('');
+    sortedView('ftrd');
   }
   let pasc_li = document.getElementById("priceasc_li");
   pasc_li.onclick = function () {

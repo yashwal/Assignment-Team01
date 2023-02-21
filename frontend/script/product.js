@@ -1,5 +1,17 @@
 import { generateCategory } from "./category.js";
 
+function star(value){
+  let point = String((parseFloat(value).toFixed(2))).slice(-2);
+  let disp = ``;
+  let i;
+  for(i=1;i<=value;i++){
+    disp += `<i class="fa fa-star full-star" style="font-size:24px"></i>`;
+  }
+  if (point==='50')
+    disp += `<i class="fa fa-star-half-o full-star" style="font-size:24px"></i>`;
+  return disp;
+}
+
 let recommend_container = document.getElementById("similarProducts");
 recommend_container.innerHTML = ``;
 
@@ -21,9 +33,12 @@ function fetchRecommended(productId) {
             if (data === null) throw "Unable to fetch data";
             let decimal = (parseFloat(data['price']).toFixed(2)).slice(-2);
             let price = String(parseInt(data['price']));
+            let rating = parseFloat(data['rating']);
+            let disp = star(rating);
             recommend_container.innerHTML += `<div class="col" onclick="window.open('product.html?uid=${productId}','_self')">
                 <img class="rec_image" src="${data['image_url']}">
                 <p class="rec_image_text">${data['title']}</p>
+                <p class="rating">${disp}</p>
                 <p class="rec_price"><sup>$</sup>${price}<sup>${decimal}</sup></p>
             </div>`
           }
@@ -82,12 +97,15 @@ window.onload = function () {
             let prod_container = document.getElementById("row");
             let decimal = (parseFloat(data['price']).toFixed(2)).slice(-2);
             let price = String(parseInt(data['price']));
+            let rating = parseFloat(data['rating']);
+            let disp = star(rating);
             prod_container.innerHTML += `<div class="column1">
                 <img class="image" src="${data['image_url']}">
             </div>
             <div class="column2">
                 <p class="image_title">${data['title']}</p>
                 <p class="price"><sup id="sup_price">$</sup>${price}<sup id="sup_price">${decimal}</sup></p>
+                <p class="rating">${disp}</p>
                 <p class="image_body">${data['description']}</p>
             </div>`
           }

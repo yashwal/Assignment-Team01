@@ -1,6 +1,7 @@
 import sys
 sys.path.append('..')
 from database.connection import *
+import random
 
 
 
@@ -14,7 +15,7 @@ def product_insert(data):
     conn=res[0]
     cur=res[1]
     
-    cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text,cat_id varchar)")
+    cur.execute("create table product(product_id text PRIMARY key,title text,description text,image_url text,price text,cat_id varchar,rating float)")
     #creating product table in sql
     
     mapp = {}
@@ -50,7 +51,11 @@ def product_insert(data):
         for temp in category:
             if(temp[1]==catLevel2 and temp[2]==str(mapp[catLevel1])):
                 cat_id=temp[0]
-        cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,cat_id))
+
+        rating_list=[2.0,2.5,3.0,3.5,4.0,4.5,5]
+        rating = random.choice(rating_list)
+
+        cur.execute("INSERT INTO product values(%s,%s,%s,%s,%s,%s,%s)",(product_id.strip(),title.strip(),description.strip(),image_url.strip(),price,cat_id,rating))
         #inserting data into product table
         count+=1
         conn.commit()

@@ -26,5 +26,6 @@ def product_retreive(productId):
         "title":data[1],
         "description":data[2],
         "image_url":data[3],
-        "price":data[4]
+        "price":data[4],
+        "rating":data[6]
     }

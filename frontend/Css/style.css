@@ -49,7 +49,7 @@ div > div{
 }
 
 .column:hover{
-  transform:scale(1.2);
+  transform:scale(1.1);
   border-radius: 5%;
   margin-top: 25px;
   transition:.5s;
@@ -57,7 +57,7 @@ div > div{
 
 .image:hover{
   box-shadow: rgba(25, 0, 255, 0.12) 0px 54px 55px, rgba(25, 0, 255, 0.12) 0px -12px 30px, rgba(25, 0, 255, 0.12) 0px 4px 6px, rgba(25, 0, 255, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  transform: scale(1.15);
+  transform: scale(1.1);
   border-radius: 5%;
   transition:.5s;
 }
@@ -174,4 +174,14 @@ sup{
   height: 500px;
   width: 700px;
   
+}
+
+.full-star{
+  color: #dd6c10;
+  padding-right: 3px;
+  font-size: 16px;
+}
+
+.rating{
+  margin-left: 8em;
 }

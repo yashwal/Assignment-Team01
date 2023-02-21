@@ -65,7 +65,7 @@
     margin-top: 7.5%;
     float: left;
     width: 22.5%;
-    height: 400px;
+    height: 450px;
     text-align: center;
     margin-left: 7.5px;
     margin-right: 7.5px;
@@ -121,4 +121,14 @@
     vertical-align:10px;
     padding-left:2px;
     padding-right:2px;
+  }
+
+  .full-star{
+    color: rgb(255, 230, 0);
+    padding-right: 3px;
+    font-size: 16px;
+  }
+
+  .rating{
+    margin-left: 5px;
   }
